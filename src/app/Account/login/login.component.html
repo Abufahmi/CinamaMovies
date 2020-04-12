@@ -1,0 +1,49 @@
+<div class="container mt-4 mb-4">
+    <h5>تسجيل الدخول</h5>
+    <hr class="mb-4" />
+    <div class="login-container">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert"
+            *ngIf="message != null && message != ''">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            {{message}}
+        </div>
+        <div class="col-md-5">
+            <form [formGroup]="loginForm" (ngSubmit)="Login()">
+                <div class="form-group">
+                    <label for="email">البريد الالكتروني</label>
+                    <input type="email" formControlName="email" class="form-control" id="email"
+                        placeholder="Email Address">
+                    <div class="text-danger"
+                        *ngIf="this.loginForm.get('email').invalid && this.loginForm.get('email').touched">
+                        {{messageValidate.email.required}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" formControlName="password" class="form-control" id="password"
+                        placeholder="Password">
+                    <div class="text-danger"
+                        *ngIf="this.loginForm.get('password').invalid && this.loginForm.get('password').touched">
+                        <div class="text-danger" *ngIf="this.loginForm.get('password').errors.required">
+                            {{messageValidate.pass.required}}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" formControlName="rememberMe" id="remember">
+                    <label class="pr-2" for="password">تذكرني</label>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">دخول</button>
+            </form>
+        </div>
+    </div>
+    <div class="btn-login mt-3">
+        ليس لدي حساب <a href="register" class="">التسجيل</a>
+    </div>
+    <div>
+        <a href=#>نسيت كلمة المرور؟</a>
+    </div>
+</div>

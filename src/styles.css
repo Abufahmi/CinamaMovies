@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'droidkufi-bold';
+    src: url('./assets/font/DroidKufi-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'droidkufi-regular';
+    src: url('./assets/font/DroidKufi-Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: 'droidkufi-regular';
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    background-color: #efefef;
+}
+
+.ar {
+    direction: rtl;
+    text-align: right;
+}
