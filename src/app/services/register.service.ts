@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Users } from '../models/user';
 import { FormGroup } from '@angular/forms';
 import { LoginModel } from '../models/login-model';
+import { ResetPasswordModel } from '../models/resetPassword';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,13 @@ export class RegisterService {
 
   EmailExist(email: string) {
     return this.http.get(this.baseUrl + 'EmailExists?email=' + email).pipe();
+  }
+
+  ForgetPassword(email: string) {
+    return this.http.get(this.baseUrl + 'ForgetPassword/' + email).pipe();
+  }
+
+  ApiResetPassword(passModel: ResetPasswordModel): Observable<ResetPasswordModel> {
+    return this.http.post<ResetPasswordModel>(this.baseUrl + 'ResetPassword', passModel, this.headers).pipe();
   }
 }

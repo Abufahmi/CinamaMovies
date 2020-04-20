@@ -11,7 +11,8 @@ import { RegisterComponent } from './Account/register/register.component';
 import { RegisterconfirmComponent } from './Account/registerconfirm/registerconfirm.component';
 import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-
+import { ForgtPasswordComponent } from './Account/forgt-password/forgt-password.component';
+import { PasswordconfirmComponent } from './Account/passwordconfirm/passwordconfirm.component';
 
 
 @NgModule({
@@ -22,7 +23,9 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
     RegisterComponent,
     RegisterconfirmComponent,
     FooterMenuComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    ForgtPasswordComponent,
+    PasswordconfirmComponent,
   ],
   imports: [
     BrowserModule,
