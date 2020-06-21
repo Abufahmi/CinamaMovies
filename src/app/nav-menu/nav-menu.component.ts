@@ -53,4 +53,11 @@ export class NavMenuComponent implements OnInit {
     return false;
   }
 
+  IsAdmin() {
+    if (this.auth.role.toLowerCase() == 'admin') {
+      return true;
+    }
+    return false;
+  }
+
 }

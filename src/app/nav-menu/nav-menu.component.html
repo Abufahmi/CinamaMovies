@@ -4,6 +4,9 @@
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+    <a class="text-light pr-3 pl-3" routerLink="controlpanel" *ngIf="IsAdmin()">
+        <i class="fa fa-user-shield"></i> لوحة التحكم
+    </a>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item dropdown">

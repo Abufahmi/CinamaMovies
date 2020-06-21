@@ -13,6 +13,9 @@ import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { ForgtPasswordComponent } from './Account/forgt-password/forgt-password.component';
 import { PasswordconfirmComponent } from './Account/passwordconfirm/passwordconfirm.component';
+import { DashboardComponent } from './Admin/dashboard/dashboard.component';
+import { UsersComponent } from './Admin/users/users.component';
+import { AddUserComponent } from './Admin/add-user/add-user.component';
 
 
 @NgModule({
@@ -26,6 +29,9 @@ import { PasswordconfirmComponent } from './Account/passwordconfirm/passwordconf
     NavMenuComponent,
     ForgtPasswordComponent,
     PasswordconfirmComponent,
+    DashboardComponent,
+    UsersComponent,
+    AddUserComponent,
   ],
   imports: [
     BrowserModule,

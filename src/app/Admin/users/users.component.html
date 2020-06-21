@@ -1,0 +1,28 @@
+<div class="">
+    <div>
+        <table class="table table-response bg-light border">
+            <thead>
+                <tr class="bg-dark text-light">
+                    <th>اسم المستخدم</th>
+                    <th>البريد الالكتروني</th>
+                    <th>رقم الهاتف</th>
+                    <th>الدولة</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td scope="row">{{user.userName}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phoneNumber}}</td>
+                    <td>{{user.country}}</td>
+                    <td>
+                        <div>
+                            <button type="button" class="btn btn-primary btn-sm">تعديل</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -25,7 +25,7 @@ export class AuthService {
   installStorage(rem: boolean, email: string) {
     const day = new Date();
     if (rem) {
-      day.setDate(day.getDay() + 10);
+      day.setDate(day.getDate() + 10);
     } else {
       day.setMinutes(day.getMinutes() + 30);
     }

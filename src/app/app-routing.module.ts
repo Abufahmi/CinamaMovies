@@ -6,6 +6,7 @@ import { LoginComponent } from './Account/login/login.component';
 import { RegisterconfirmComponent } from './Account/registerconfirm/registerconfirm.component';
 import { ForgtPasswordComponent } from './Account/forgt-password/forgt-password.component';
 import { PasswordconfirmComponent } from './Account/passwordconfirm/passwordconfirm.component';
+import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registerconfirm', component: RegisterconfirmComponent },
   { path: 'forgetpassword', component: ForgtPasswordComponent },
-  { path: 'passwordconfirm', component: PasswordconfirmComponent }
+  { path: 'passwordconfirm', component: PasswordconfirmComponent },
+  { path: 'controlpanel', component: DashboardComponent }
+
 ];
 
 @NgModule({
