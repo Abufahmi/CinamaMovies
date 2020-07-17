@@ -1,5 +1,5 @@
 <div class="container mt-4 mb-4">
-    <h5>اضافة مستخدم جديد</h5>
+    <h5>{{title}}</h5>
     <hr class="mb-4" />
     <div class="login-container">
         <div class="alert alert-success alert-dismissible fade show" role="alert"
@@ -107,8 +107,7 @@
                     </label>
                 </div>
                 <button type="submit" class="btn btn-primary"
-                    [disabled]="userForm.invalid || isPasswordMatch() || isUserNameExist() || isEmailExist()">اضافة
-                    مستخدم جديد</button>
+                    [disabled]="userForm.invalid || isPasswordMatch() || isUserNameExist() || isEmailExist()">{{btnTitle}}</button>
             </form>
         </div>
     </div>

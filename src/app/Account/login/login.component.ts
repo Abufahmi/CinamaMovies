@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         const rem = !!this.loginForm.value.rememberMe;
         const email = this.loginForm.value.email;
         this.auth.installStorage(rem, email);
-        this.route.navigate(['home']);
+        this.route.navigate(['home']).then(x=> {window.location.reload()});
       }, err => {
         console.log(err);
         this.message = err.error;

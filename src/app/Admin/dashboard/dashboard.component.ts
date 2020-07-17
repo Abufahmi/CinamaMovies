@@ -11,11 +11,11 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   isUserList: boolean;
-  isAddUser:boolean;
+  isAddUser: boolean;
 
   ngOnInit(): void {
     this.isUserList = false;
-    this.isAddUser=false;
+    this.isAddUser = false;
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
@@ -24,10 +24,11 @@ export class DashboardComponent implements OnInit {
   }
 
   CheckUser(): boolean {
+    this.isAddUser = false;
     return this.isUserList = true;
   }
 
-  AddUser(){
+  AddUser() {
     this.isUserList = false;
     return this.isAddUser = true;
   }
