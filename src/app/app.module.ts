@@ -16,6 +16,10 @@ import { PasswordconfirmComponent } from './Account/passwordconfirm/passwordconf
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 import { UsersComponent } from './Admin/users/users.component';
 import { AddUserComponent } from './Admin/add-user/add-user.component';
+import { UserRolesComponent } from './Admin/user-roles/user-roles.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AccessdeniedComponent } from './accessdenied/accessdenied.component';
+import { DashboardGaurdService } from './gaurds/dashboard-gaurd.service';
 
 
 @NgModule({
@@ -32,6 +36,9 @@ import { AddUserComponent } from './Admin/add-user/add-user.component';
     DashboardComponent,
     UsersComponent,
     AddUserComponent,
+    UserRolesComponent,
+    NotFoundComponent,
+    AccessdeniedComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +46,7 @@ import { AddUserComponent } from './Admin/add-user/add-user.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [DashboardGaurdService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

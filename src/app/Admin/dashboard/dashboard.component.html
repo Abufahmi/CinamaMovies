@@ -15,10 +15,7 @@
                         <a (click)="CheckUser()">قائمة المستخدمين</a>
                     </li>
                     <li>
-                        <a href="#">Home 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 3</a>
+                        <a (click)="CheckUserRoleList()">صلاحيات المستخدمين</a>
                     </li>
                 </ul>
             </li>
@@ -81,6 +78,12 @@
                     <button type="button" class="btn btn-success mb-3" (click)="AddUser()">اضافة جديد</button>
                 </div>
                 <app-users></app-users>
+            </div>
+            <div *ngIf="isUserRolesList">
+                <div class="alert alert-primary" role="alert">
+                    <strong>قائمة صلاحيات المستخدمين</strong>
+                </div>
+                <app-user-roles></app-user-roles>
             </div>
             <div *ngIf="isAddUser">
                 <app-add-user></app-add-user>

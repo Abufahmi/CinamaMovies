@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Users } from '../models/user';
 import { UserModel } from '../models/UserModel';
 import { EditUserModel } from '../models/EditUserModel';
+import { UserRoleModel } from '../models/UserRoleModel';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,9 @@ export class AdminService {
 
   DeleteAll(ids: string[]){
     return this.http.post(this.baseUrl + 'DeleteUsers', ids, this.headers).pipe();
+  }
+
+  GetUserRole(): Observable<UserRoleModel[]>{
+    return this.http.get<UserRoleModel[]>(this.baseUrl + 'GetUserRole', this.headers).pipe();
   }
 }

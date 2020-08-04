@@ -8,6 +8,9 @@ import { ForgtPasswordComponent } from './Account/forgt-password/forgt-password.
 import { PasswordconfirmComponent } from './Account/passwordconfirm/passwordconfirm.component';
 import { DashboardComponent } from './Admin/dashboard/dashboard.component';
 import { AddUserComponent } from './Admin/add-user/add-user.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AccessdeniedComponent } from './accessdenied/accessdenied.component';
+import { DashboardGaurdService } from './gaurds/dashboard-gaurd.service';
 
 
 const routes: Routes = [
@@ -18,8 +21,10 @@ const routes: Routes = [
   { path: 'registerconfirm', component: RegisterconfirmComponent },
   { path: 'forgetpassword', component: ForgtPasswordComponent },
   { path: 'passwordconfirm', component: PasswordconfirmComponent },
-  { path: 'controlpanel', component: DashboardComponent },
+  { path: 'controlpanel', component: DashboardComponent, canActivate:[DashboardGaurdService] },
   { path: 'edituser/:id', component: AddUserComponent },
+  { path: 'notfound', component: NotFoundComponent },
+  { path: 'accessdenied', component: AccessdeniedComponent },
 
 
 ];

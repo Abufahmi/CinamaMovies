@@ -1,0 +1,23 @@
+<div class="user-role">
+    <table class="table table-light rounded">
+        <thead>
+            <tr class="bg-dark text-light"> 
+                <th>اسم المستخدم</th>
+                <th>نوع الصلاحية</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of userRoles">
+                <td scope="row">
+                    {{item.userName}}
+                    <input type="hidden" value="{{item.userId}}"> <input type="hidden" value="{{item.roleId}}">
+                </td>
+                <td>{{item.roleName}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm">تعديل</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

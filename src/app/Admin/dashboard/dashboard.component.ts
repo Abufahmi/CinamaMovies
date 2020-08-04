@@ -12,9 +12,13 @@ export class DashboardComponent implements OnInit {
 
   isUserList: boolean;
   isAddUser: boolean;
+  isUserRolesList: boolean;
+
 
   ngOnInit(): void {
     this.isUserList = false;
+    this.isUserRolesList = false;
+
     this.isAddUser = false;
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
@@ -25,12 +29,20 @@ export class DashboardComponent implements OnInit {
 
   CheckUser(): boolean {
     this.isAddUser = false;
+    this.isUserRolesList = false;
     return this.isUserList = true;
   }
 
   AddUser() {
     this.isUserList = false;
+    this.isUserRolesList = false;
     return this.isAddUser = true;
+  }
+
+  CheckUserRoleList(): boolean {
+    this.isAddUser = false;
+    this.isUserList = false
+    return this.isUserRolesList = true;
   }
 
 }
