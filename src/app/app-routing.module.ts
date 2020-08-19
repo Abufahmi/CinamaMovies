@@ -11,6 +11,7 @@ import { AddUserComponent } from './Admin/add-user/add-user.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AccessdeniedComponent } from './accessdenied/accessdenied.component';
 import { DashboardGaurdService } from './gaurds/dashboard-gaurd.service';
+import { EditUserRoleComponent } from './Admin/edit-user-role/edit-user-role.component';
 
 
 const routes: Routes = [
@@ -21,11 +22,11 @@ const routes: Routes = [
   { path: 'registerconfirm', component: RegisterconfirmComponent },
   { path: 'forgetpassword', component: ForgtPasswordComponent },
   { path: 'passwordconfirm', component: PasswordconfirmComponent },
-  { path: 'controlpanel', component: DashboardComponent, canActivate:[DashboardGaurdService] },
+  { path: 'controlpanel', component: DashboardComponent, canActivate: [DashboardGaurdService] },
   { path: 'edituser/:id', component: AddUserComponent },
   { path: 'notfound', component: NotFoundComponent },
   { path: 'accessdenied', component: AccessdeniedComponent },
-
+  { path: 'edituserrole/:id/:id1', component: EditUserRoleComponent }
 
 ];
 

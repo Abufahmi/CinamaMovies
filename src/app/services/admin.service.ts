@@ -5,6 +5,8 @@ import { Users } from '../models/user';
 import { UserModel } from '../models/UserModel';
 import { EditUserModel } from '../models/EditUserModel';
 import { UserRoleModel } from '../models/UserRoleModel';
+import { RoleModel } from '../models/RoleModel';
+import { EditUserRoleModel } from '../models/EditUserRoleModel';
 
 @Injectable({
   providedIn: 'root'
@@ -31,19 +33,28 @@ export class AdminService {
     return this.http.post<UserModel>(this.baseUrl + 'AddUser', model, this.headers).pipe();
   }
 
-  GetUser(id: string): Observable<Users>{
-    return this.http.get<Users>(this.baseUrl + 'GetUser/' + id,  this.headers).pipe();
+  GetUser(id: string): Observable<Users> {
+    return this.http.get<Users>(this.baseUrl + 'GetUser/' + id, this.headers).pipe();
   }
 
-  EditUser(model: EditUserModel): Observable<Users>{
+  EditUser(model: EditUserModel): Observable<Users> {
     return this.http.put<Users>(this.baseUrl + 'EditUser', model, this.headers).pipe();
   }
 
-  DeleteAll(ids: string[]){
+  DeleteAll(ids: string[]) {
     return this.http.post(this.baseUrl + 'DeleteUsers', ids, this.headers).pipe();
   }
 
-  GetUserRole(): Observable<UserRoleModel[]>{
+  GetUserRole(): Observable<UserRoleModel[]> {
     return this.http.get<UserRoleModel[]>(this.baseUrl + 'GetUserRole', this.headers).pipe();
+  }
+
+
+  GelAllRoles(): Observable<RoleModel[]> {
+    return this.http.get<RoleModel[]>(this.baseUrl + 'GetAllRoles', this.headers).pipe();
+  }
+
+  EditUserRole(model: EditUserRoleModel): Observable<EditUserRoleModel> {
+    return this.http.put<EditUserRoleModel>(this.baseUrl + 'EditUserRole', model, this.headers).pipe();
   }
 }

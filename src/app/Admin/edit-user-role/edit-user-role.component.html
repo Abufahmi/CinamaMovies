@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="alert alert-primary mt-4" role="alert">
+        <strong>تعديل صلاحية المستخدم</strong>
+    </div>
+    <div class="col-md-5">
+        <form [formGroup]="userForm" (ngSubmit)="EditRoles()">
+            <div class="form-group">
+                <label for="userName">اسم المستخدم</label>
+                <input type="text" formControlName="userName" class="form-control" id="userName" placeholder="User Name"
+                    [ngClass]="{'is-invalid' :
+      !this.userForm.get('userName').valid && this.userForm.get('userName').touched}">
+                <div class="text-danger" *ngIf="!this.userForm.get('userName').valid &&
+                this.userForm.get('userName').touched">
+                    {{messageValidate.userName.required}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="roleName">نوع الصلاحية</label>
+                <select class="form-control" formControlName="roleName" name="roleName" id="roleName" [ngClass]="{'is-invalid' :
+                this.userForm.get('roleName').invalid && this.userForm.get('roleName').touched}" (change)="onRolesChange()">
+                    <option *ngFor="let item of roles" [value]="item.id">{{item.name}}</option>
+                </select>
+                <div class="text-danger" *ngIf="!this.userForm.get('roleName').valid &&
+                this.userForm.get('roleName').touched">
+                    {{messageValidate.roleName.required}}
+                </div>
+            </div>
+            <div class="btn-area">
+                <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">تعديل</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -20,6 +20,7 @@ import { UserRolesComponent } from './Admin/user-roles/user-roles.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AccessdeniedComponent } from './accessdenied/accessdenied.component';
 import { DashboardGaurdService } from './gaurds/dashboard-gaurd.service';
+import { EditUserRoleComponent } from './Admin/edit-user-role/edit-user-role.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { DashboardGaurdService } from './gaurds/dashboard-gaurd.service';
     UserRolesComponent,
     NotFoundComponent,
     AccessdeniedComponent,
+    EditUserRoleComponent,
   ],
   imports: [
     BrowserModule,

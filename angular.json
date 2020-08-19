@@ -19,6 +19,10 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "allowedCommonJsDependencies": [
+              "jquery",
+              "crypto-js"
+           ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
