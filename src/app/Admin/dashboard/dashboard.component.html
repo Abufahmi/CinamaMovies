@@ -2,7 +2,7 @@
     <!-- Sidebar  -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <h3>Bootstrap Sidebar</h3>
+            <h4>لوحة التحكم</h4>
         </div>
 
         <ul class="list-unstyled components">
@@ -20,13 +20,10 @@
                 </ul>
             </li>
             <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">التصنيفات</a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <a href="#">Page 1</a>
+                        <a (click)="GetCategoryList()">التصنيفات الأساسية</a>
                     </li>
                     <li>
                         <a href="#">Page 2</a>
@@ -35,6 +32,9 @@
                         <a href="#">Page 3</a>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <a href="#">About</a>
             </li>
             <li>
                 <a href="#">Portfolio</a>
@@ -87,6 +87,9 @@
             </div>
             <div *ngIf="isAddUser">
                 <app-add-user></app-add-user>
+            </div>
+            <div *ngIf="isCategoryList">
+                <app-categry-list></app-categry-list>
             </div>
         </div>
     </div>

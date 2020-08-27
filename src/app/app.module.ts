@@ -21,6 +21,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AccessdeniedComponent } from './accessdenied/accessdenied.component';
 import { DashboardGaurdService } from './gaurds/dashboard-gaurd.service';
 import { EditUserRoleComponent } from './Admin/edit-user-role/edit-user-role.component';
+import { CategryListComponent } from './Admin/Categories/categry-list/categry-list.component';
+import { AddCategoryComponent } from './Admin/Categories/add-category/add-category.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { EditUserRoleComponent } from './Admin/edit-user-role/edit-user-role.com
     NotFoundComponent,
     AccessdeniedComponent,
     EditUserRoleComponent,
+    CategryListComponent,
+    AddCategoryComponent,
   ],
   imports: [
     BrowserModule,

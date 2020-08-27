@@ -1,0 +1,25 @@
+<div class="container mt-4 mb-4">
+    <h5>{{title}}</h5>
+    <hr class="mb-4" />
+    <div class="login-container">
+        <div class="col-md-5">
+            <form [formGroup]="catForm" (ngSubmit)="AddCategory()">
+                <div class="form-group">
+                    <label for="catName">اسم التصنيف</label>
+                    <input type="text" formControlName="catName" class="form-control" id="catName"
+                        placeholder="اسم التصنيف" [ngClass]="{'is-invalid' :
+              this.catForm.get('catName').invalid && this.catForm.get('catName').touched}">
+                    <div class="text-danger" *ngIf="this.catForm.get('catName').invalid &&
+                        this.catForm.get('catName').touched && this.catForm.get('catName').value === ''">
+                        {{messageValidate.catName.required}}
+                    </div>
+                    <div class="text-danger" *ngIf="this.catForm.get('catName').value !== null &&
+                    this.catForm.get('catName').value !== '' && this.catForm.get('catName').value.length > 150">
+                        {{messageValidate.catName.max}}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="catForm.invalid">{{btnTitle}}</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -7,6 +7,7 @@ import { EditUserModel } from '../models/EditUserModel';
 import { UserRoleModel } from '../models/UserRoleModel';
 import { RoleModel } from '../models/RoleModel';
 import { EditUserRoleModel } from '../models/EditUserRoleModel';
+import { Category } from '../models/CategoryModel';
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +57,9 @@ export class AdminService {
 
   EditUserRole(model: EditUserRoleModel): Observable<EditUserRoleModel> {
     return this.http.put<EditUserRoleModel>(this.baseUrl + 'EditUserRole', model, this.headers).pipe();
+  }
+
+  GetAllCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(this.baseUrl + 'GetCategories', this.headers).pipe();
   }
 }

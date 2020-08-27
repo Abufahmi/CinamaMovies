@@ -12,6 +12,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AccessdeniedComponent } from './accessdenied/accessdenied.component';
 import { DashboardGaurdService } from './gaurds/dashboard-gaurd.service';
 import { EditUserRoleComponent } from './Admin/edit-user-role/edit-user-role.component';
+import { AddCategoryComponent } from './Admin/Categories/add-category/add-category.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,9 @@ const routes: Routes = [
   { path: 'edituser/:id', component: AddUserComponent },
   { path: 'notfound', component: NotFoundComponent },
   { path: 'accessdenied', component: AccessdeniedComponent },
-  { path: 'edituserrole/:id/:id1', component: EditUserRoleComponent }
+  { path: 'edituserrole/:id/:id1', component: EditUserRoleComponent },
+  { path: 'category', component: AddCategoryComponent },
+
 
 ];
 
