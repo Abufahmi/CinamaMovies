@@ -1,6 +1,10 @@
 <div class="container mt-4 mb-4">
     <h5>{{title}}</h5>
     <hr class="mb-4" />
+    <button type="button" class="btn btn-primary mb-4" (click)="GoToList()">العودة لقائمة التصنيفات</button>
+    <div class="alert alert-success" role="alert" *ngIf="message">
+        <strong>{{message}}</strong>
+    </div>
     <div class="login-container">
         <div class="col-md-5">
             <form [formGroup]="catForm" (ngSubmit)="AddCategory()">

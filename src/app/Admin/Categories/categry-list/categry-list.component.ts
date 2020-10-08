@@ -32,8 +32,10 @@ export class CategryListComponent implements OnInit {
     }, ex => console.log(ex));
   }
 
-  EditCategory(id: number) {
-
+  EditCategory(id: number, catName: string) {
+    if (id) {
+      this.router.navigate(['/editcategory', id, catName]);
+    }
   }
 
   DeleteCount() {
@@ -68,7 +70,7 @@ export class CategryListComponent implements OnInit {
         }
       }
 
-      this.service.DeleteAll(ids).subscribe(s => {
+      this.service.DeleteAllCategory(ids).subscribe(s => {
         this.getCategories();
         $("#btnClose").trigger("click");
       }, ex => console.log(ex));

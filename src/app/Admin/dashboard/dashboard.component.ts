@@ -31,6 +31,10 @@ export class DashboardComponent implements OnInit {
       this.CheckUserRoleList();
       sessionStorage.removeItem("editUserRole");
     }
+    if (sessionStorage.getItem("cat")) {
+      this.GetCategoryList();
+      sessionStorage.removeItem("v");
+    }
   }
 
   CheckUser(): boolean {

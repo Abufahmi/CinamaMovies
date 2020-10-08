@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'accessdenied', component: AccessdeniedComponent },
   { path: 'edituserrole/:id/:id1', component: EditUserRoleComponent },
   { path: 'category', component: AddCategoryComponent },
-
+  { path: 'editcategory/:id/:id1', component: AddCategoryComponent },
 
 ];
 

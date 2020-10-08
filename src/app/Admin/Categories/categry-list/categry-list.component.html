@@ -3,7 +3,7 @@
         <strong>قائمة التصنيفات الأساسية</strong>
     </div>
     <button type="button" class="btn btn-outline-success mb-3" (click)="AddCategory()">انشاء تصنيف</button>
-    <table class="table table-light rounded mb-3">
+    <table id="tbl" class="table table-light rounded mb-3">
         <thead>
             <tr class="bg-dark text-light">
                 <th>اسم الصنف</th>
@@ -19,7 +19,7 @@
                     {{item.categoryName}}
                 </td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm" (click)="EditCategory(item.id)">تعديل</button>
+                    <button type="button" class="btn btn-primary btn-sm" (click)="EditCategory(item.id, item.categoryName)">تعديل</button>
                 </td>
                 <td>
                     <input type="checkbox" class="ckitem" value="{{item.id}}">

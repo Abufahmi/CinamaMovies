@@ -62,4 +62,16 @@ export class AdminService {
   GetAllCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(this.baseUrl + 'GetCategories', this.headers).pipe();
   }
+
+  AddCategory(model: Category): Observable<Category> {
+    return this.http.post<Category>(this.baseUrl + 'AddCategory', model, this.headers).pipe();
+  }
+
+  EditCategory(model: Category): Observable<Category> {
+    return this.http.put<Category>(this.baseUrl + 'EditCategory', model, this.headers).pipe();
+  }
+
+  DeleteAllCategory(ids: string[]) {
+    return this.http.post(this.baseUrl + 'DeleteCategory', ids, this.headers).pipe();
+  }
 }
