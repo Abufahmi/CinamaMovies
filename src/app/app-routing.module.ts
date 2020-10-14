@@ -13,6 +13,7 @@ import { AccessdeniedComponent } from './accessdenied/accessdenied.component';
 import { DashboardGaurdService } from './gaurds/dashboard-gaurd.service';
 import { EditUserRoleComponent } from './Admin/edit-user-role/edit-user-role.component';
 import { AddCategoryComponent } from './Admin/Categories/add-category/add-category.component';
+import { SubCategoryComponent } from './Admin/SubCategories/sub-category/sub-category.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'edituserrole/:id/:id1', component: EditUserRoleComponent },
   { path: 'category', component: AddCategoryComponent },
   { path: 'editcategory/:id/:id1', component: AddCategoryComponent },
-
+  { path: 'subcategory', component: SubCategoryComponent },
+  { path: 'editsubcategory/:id/:id1/:id2', component: SubCategoryComponent },
 ];
 
 @NgModule({

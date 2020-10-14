@@ -1,0 +1,42 @@
+<div class="container mt-4 mb-4">
+    <h5>{{title}}</h5>
+    <hr class="mb-4" />
+    <button type="button" class="btn btn-primary mb-4" (click)="GoToList()">العودة لقائمة التصنيفات الفرعية</button>
+    <div class="alert alert-success" role="alert" *ngIf="message">
+        <strong>{{message}}</strong>
+    </div>
+    <div class="login-container">
+        <div class="col-md-5">
+            <form [formGroup]="subCatForm" (ngSubmit)="AddSubCategory()">
+                <div class="form-group">
+                    <label for="">التصنيف الأساسي</label>
+                    <select class="custom-select" formControlName="catId" required>
+                        <option selected value="0" disabled>اختر التصنيف الأساسي</option>
+                        <option *ngFor="let cat of categories" [value]="cat.id">{{cat.categoryName}}</option>
+                    </select>
+                    <div class="text-danger"
+                        *ngIf="this.subCatForm.get('catId').value < 1 && this.subCatForm.get('catId').touched">
+                        {{messageValidate.catId.required}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="subCatName">اسم التصنيف الفرعي</label>
+                    <input type="text" formControlName="subCatName" class="form-control" id="subCatName"
+                        placeholder="اسم التصنيف" [ngClass]="{'is-invalid' :
+              this.subCatForm.get('subCatName').invalid && this.subCatForm.get('subCatName').touched}">
+                    <div class="text-danger" *ngIf="this.subCatForm.get('subCatName').invalid &&
+                        this.subCatForm.get('subCatName').touched && this.subCatForm.get('subCatName').value === ''">
+                        {{messageValidate.subCatName.required}}
+                    </div>
+                    <div class="text-danger"
+                        *ngIf="this.subCatForm.get('subCatName').value !== null &&
+                    this.subCatForm.get('subCatName').value !== '' && this.subCatForm.get('subCatName').value.length > 150">
+                        {{messageValidate.subCatName.max}}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary"
+                    [disabled]="subCatForm.invalid || this.subCatForm.get('catId').value < 1">{{btnTitle}}</button>
+            </form>
+        </div>
+    </div>
+</div>

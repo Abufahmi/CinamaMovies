@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   isAddUser: boolean;
   isUserRolesList: boolean;
   isCategoryList: boolean;
+  isSubCategoryList: boolean;
 
 
   ngOnInit(): void {
@@ -33,11 +34,16 @@ export class DashboardComponent implements OnInit {
     }
     if (sessionStorage.getItem("cat")) {
       this.GetCategoryList();
-      sessionStorage.removeItem("v");
+      sessionStorage.removeItem("cat");
+    }
+    if (sessionStorage.getItem("subcat")) {
+      this.GetSubCategoryList();
+      sessionStorage.removeItem("subcat");
     }
   }
 
   CheckUser(): boolean {
+    this.isSubCategoryList = false;
     this.isCategoryList = false;
     this.isAddUser = false;
     this.isUserRolesList = false;
@@ -45,6 +51,7 @@ export class DashboardComponent implements OnInit {
   }
 
   AddUser() {
+    this.isSubCategoryList = false;
     this.isCategoryList = false;
     this.isUserList = false;
     this.isUserRolesList = false;
@@ -52,6 +59,7 @@ export class DashboardComponent implements OnInit {
   }
 
   CheckUserRoleList(): boolean {
+    this.isSubCategoryList = false;
     this.isCategoryList = false;
     this.isAddUser = false;
     this.isUserList = false
@@ -59,10 +67,18 @@ export class DashboardComponent implements OnInit {
   }
 
   GetCategoryList() {
+    this.isSubCategoryList = false;
     this.isUserRolesList = false;
     this.isAddUser = false;
     this.isUserList = false
     return this.isCategoryList = true;
   }
 
+  GetSubCategoryList() {
+    this.isCategoryList = false;
+    this.isUserRolesList = false;
+    this.isAddUser = false;
+    this.isUserList = false
+    return this.isSubCategoryList = true;
+  }
 }

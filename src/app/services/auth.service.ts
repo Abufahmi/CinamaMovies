@@ -22,7 +22,7 @@ export class AuthService {
     }
   }
 
-  installStorage(rem: boolean, email: string) {
+   async installStorage(rem: boolean, email: string) {
     const day = new Date();
     if (rem) {
       day.setDate(day.getDate() + 10);

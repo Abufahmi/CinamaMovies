@@ -23,6 +23,8 @@ import { DashboardGaurdService } from './gaurds/dashboard-gaurd.service';
 import { EditUserRoleComponent } from './Admin/edit-user-role/edit-user-role.component';
 import { CategryListComponent } from './Admin/Categories/categry-list/categry-list.component';
 import { AddCategoryComponent } from './Admin/Categories/add-category/add-category.component';
+import { SubCategoryListComponent } from './Admin/SubCategories/sub-category-list/sub-category-list.component';
+import { SubCategoryComponent } from './Admin/SubCategories/sub-category/sub-category.component';
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import { AddCategoryComponent } from './Admin/Categories/add-category/add-catego
     EditUserRoleComponent,
     CategryListComponent,
     AddCategoryComponent,
+    SubCategoryListComponent,
+    SubCategoryComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { UserRoleModel } from '../models/UserRoleModel';
 import { RoleModel } from '../models/RoleModel';
 import { EditUserRoleModel } from '../models/EditUserRoleModel';
 import { Category } from '../models/CategoryModel';
+import { SubCategory } from '../models/SubCatgory';
 
 @Injectable({
   providedIn: 'root'
@@ -73,5 +74,21 @@ export class AdminService {
 
   DeleteAllCategory(ids: string[]) {
     return this.http.post(this.baseUrl + 'DeleteCategory', ids, this.headers).pipe();
+  }
+
+  GetAllSubCategories(): Observable<SubCategory[]> {
+    return this.http.get<SubCategory[]>(this.baseUrl + 'GetSubCategories', this.headers).pipe();
+  }
+
+  AddSubCategory(model: SubCategory): Observable<SubCategory> {
+    return this.http.post<SubCategory>(this.baseUrl + 'AddSubCategory', model, this.headers).pipe();
+  }
+
+  EditSubCategory(model: SubCategory): Observable<SubCategory> {
+    return this.http.put<SubCategory>(this.baseUrl + 'EditSubCategory', model, this.headers).pipe();
+  }
+
+  DeleteAllSubCategory(ids: string[]) {
+    return this.http.post(this.baseUrl + 'DeleteSubCategory', ids, this.headers).pipe();
   }
 }

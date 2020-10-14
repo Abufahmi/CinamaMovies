@@ -1,39 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from 'src/app/services/admin.service';
 import { Router } from '@angular/router';
-import { Category } from 'src/app/models/CategoryModel';
+import { SubCategory } from 'src/app/models/SubCatgory';
+import { AdminService } from 'src/app/services/admin.service';
 import * as $ from 'jquery';
 
 @Component({
-  selector: 'app-categry-list',
-  templateUrl: './categry-list.component.html',
-  styleUrls: ['./categry-list.component.css']
+  selector: 'app-sub-category-list',
+  templateUrl: './sub-category-list.component.html',
+  styleUrls: ['./sub-category-list.component.css']
 })
-export class CategryListComponent implements OnInit {
+export class SubCategoryListComponent implements OnInit {
 
   constructor(
     private service: AdminService,
     private router: Router
   ) { }
 
-  categories: Category[];
+  subCategories: SubCategory[];
   num: number;
 
   ngOnInit(): void {
     this.num = 0;
-    this.categories = null;
-    this.getCategories();
+    this.subCategories = null;
+    this.getSubCategories();
   }
 
-  getCategories() {
-    this.service.GetAllCategories().subscribe(list => {
-      this.categories = list;
+  getSubCategories() {
+    this.service.GetAllSubCategories().subscribe(list => {
+      this.subCategories = list;
     }, ex => console.log(ex));
   }
 
-  EditCategory(id: number, catName: string) {
+  EditSubCategory(id: number, catName: string, catId: number) {
     if (id) {
-      this.router.navigate(['/editcategory', id, catName]);
+      this.router.navigate(['/editsubcategory', id, catName, catId]);
     }
   }
 
@@ -42,8 +42,8 @@ export class CategryListComponent implements OnInit {
     this.num = count;
   }
 
-  AddCategory() {
-    this.router.navigate(['category']);
+  AddSubCategory() {
+    this.router.navigate(['subcategory']);
   }
 
   IsDelete() {
@@ -69,8 +69,8 @@ export class CategryListComponent implements OnInit {
         }
       }
 
-      this.service.DeleteAllCategory(ids).subscribe(s => {
-        this.getCategories();
+      this.service.DeleteAllSubCategory(ids).subscribe(s => {
+        this.getSubCategories();
         $("#btnClose").trigger("click");
       }, ex => console.log(ex));
     }

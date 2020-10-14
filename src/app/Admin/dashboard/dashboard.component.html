@@ -26,7 +26,7 @@
                         <a (click)="GetCategoryList()">التصنيفات الأساسية</a>
                     </li>
                     <li>
-                        <a href="#">Page 2</a>
+                        <a (click)="GetSubCategoryList()">التصنيفات الفرعية</a>
                     </li>
                     <li>
                         <a href="#">Page 3</a>
@@ -90,6 +90,9 @@
             </div>
             <div *ngIf="isCategoryList">
                 <app-categry-list></app-categry-list>
+            </div>
+            <div *ngIf="isSubCategoryList">
+                <app-sub-category-list></app-sub-category-list>
             </div>
         </div>
     </div>
