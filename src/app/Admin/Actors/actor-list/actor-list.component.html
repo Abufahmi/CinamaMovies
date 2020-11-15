@@ -1,0 +1,53 @@
+<div class="user-role">
+    <div class="alert alert-primary mb-3" role="alert">
+        <strong>قائمة الممثلين</strong>
+    </div>
+    <button type="button" class="btn btn-outline-success mb-3" (click)="AddActor()">اضافة ممثل</button>
+    <table id="tbl" class="table table-light rounded mb-3">
+        <thead>
+            <tr class="bg-dark text-light">
+                <th>اسم الممثل</th>
+                <th></th>
+                <th>
+                    <input type="checkbox" class="ckheader" (change)="SelectAll()">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of actors">
+                <td scope="row">
+                    {{item.actorName}}
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm" (click)="EditActor(item.id)">تعديل</button>
+                </td>
+                <td>
+                    <input type="checkbox" class="ckitem" value="{{item.id}}">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modelId"
+            (click)="DeleteCount()" [disabled]="!IsDelete()">Delete
+        </button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">تنبيه حذف</h5>
+            </div>
+            <div class="modal-body">
+                لقد قمت باختيار عدد {{num}} عنصر للحذف. هل تريد الحذف فعلا؟؟
+            </div>
+            <div class="modal-footer">
+                <button id="btnClose" type="button" class="btn btn-secondary" data-dismiss="modal">تراجع</button>
+                <button type="button" class="btn btn-danger" (click)="DeleteConfirm()">تأكيد الحذف</button>
+            </div>
+        </div>
+    </div>
+</div>

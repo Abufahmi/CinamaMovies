@@ -15,10 +15,11 @@ export class DashboardComponent implements OnInit {
   isUserRolesList: boolean;
   isCategoryList: boolean;
   isSubCategoryList: boolean;
-
+  isActorList: boolean;
 
   ngOnInit(): void {
     this.isUserList = false;
+    this.isActorList = false;
     this.isUserRolesList = false;
     this.isCategoryList = false;
     this.isAddUser = false;
@@ -31,18 +32,17 @@ export class DashboardComponent implements OnInit {
     if (sessionStorage.getItem("editUserRole")) {
       this.CheckUserRoleList();
       sessionStorage.removeItem("editUserRole");
-    }
-    if (sessionStorage.getItem("cat")) {
+    } else if (sessionStorage.getItem("cat")) {
       this.GetCategoryList();
       sessionStorage.removeItem("cat");
-    }
-    if (sessionStorage.getItem("subcat")) {
+    } else if (sessionStorage.getItem("subcat")) {
       this.GetSubCategoryList();
       sessionStorage.removeItem("subcat");
-    }
+    } 
   }
 
   CheckUser(): boolean {
+    this.isActorList = false;
     this.isSubCategoryList = false;
     this.isCategoryList = false;
     this.isAddUser = false;
@@ -51,6 +51,7 @@ export class DashboardComponent implements OnInit {
   }
 
   AddUser() {
+    this.isActorList = false;
     this.isSubCategoryList = false;
     this.isCategoryList = false;
     this.isUserList = false;
@@ -59,6 +60,7 @@ export class DashboardComponent implements OnInit {
   }
 
   CheckUserRoleList(): boolean {
+    this.isActorList = false;
     this.isSubCategoryList = false;
     this.isCategoryList = false;
     this.isAddUser = false;
@@ -67,6 +69,7 @@ export class DashboardComponent implements OnInit {
   }
 
   GetCategoryList() {
+    this.isActorList = false;
     this.isSubCategoryList = false;
     this.isUserRolesList = false;
     this.isAddUser = false;
@@ -75,10 +78,20 @@ export class DashboardComponent implements OnInit {
   }
 
   GetSubCategoryList() {
+    this.isActorList = false;
     this.isCategoryList = false;
     this.isUserRolesList = false;
     this.isAddUser = false;
     this.isUserList = false
     return this.isSubCategoryList = true;
+  }
+
+  GetActorList(){
+    this.isCategoryList = false;
+    this.isUserRolesList = false;
+    this.isAddUser = false;
+    this.isUserList = false;
+    this.isSubCategoryList = false;
+    return this.isActorList = true;
   }
 }

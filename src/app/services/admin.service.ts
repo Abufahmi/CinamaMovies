@@ -9,6 +9,7 @@ import { RoleModel } from '../models/RoleModel';
 import { EditUserRoleModel } from '../models/EditUserRoleModel';
 import { Category } from '../models/CategoryModel';
 import { SubCategory } from '../models/SubCatgory';
+import { Actor } from '../models/Actor';
 
 @Injectable({
   providedIn: 'root'
@@ -90,5 +91,9 @@ export class AdminService {
 
   DeleteAllSubCategory(ids: string[]) {
     return this.http.post(this.baseUrl + 'DeleteSubCategory', ids, this.headers).pipe();
+  }
+
+  GetAllActors(): Observable<Actor[]> {
+    return this.http.get<Actor[]>(this.baseUrl + 'GetAllActors', this.headers).pipe();
   }
 }

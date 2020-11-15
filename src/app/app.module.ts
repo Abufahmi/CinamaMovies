@@ -25,6 +25,8 @@ import { CategryListComponent } from './Admin/Categories/categry-list/categry-li
 import { AddCategoryComponent } from './Admin/Categories/add-category/add-category.component';
 import { SubCategoryListComponent } from './Admin/SubCategories/sub-category-list/sub-category-list.component';
 import { SubCategoryComponent } from './Admin/SubCategories/sub-category/sub-category.component';
+import { AddActorComponent } from './Admin/Actors/add-actor/add-actor.component';
+import { ActorListComponent } from './Admin/Actors/actor-list/actor-list.component';
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import { SubCategoryComponent } from './Admin/SubCategories/sub-category/sub-cat
     AddCategoryComponent,
     SubCategoryListComponent,
     SubCategoryComponent,
+    AddActorComponent,
+    ActorListComponent,
   ],
   imports: [
     BrowserModule,

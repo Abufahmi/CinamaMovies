@@ -20,16 +20,24 @@
                 </ul>
             </li>
             <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">التصنيفات</a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
+                <a href="#pageCategory" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">التصنيفات</a>
+                <ul class="collapse list-unstyled" id="pageCategory">
                     <li>
                         <a (click)="GetCategoryList()">التصنيفات الأساسية</a>
                     </li>
                     <li>
                         <a (click)="GetSubCategoryList()">التصنيفات الفرعية</a>
                     </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#pageMovie" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">أفلام ومسلسلات</a>
+                <ul class="collapse list-unstyled" id="pageMovie">
                     <li>
-                        <a href="#">Page 3</a>
+                        <a (click)="GetActorList()">قائمة الممثلين</a>
+                    </li>
+                    <li>
+                        <a (click)="GetSubCategoryList()">التصنيفات الفرعية</a>
                     </li>
                 </ul>
             </li>
@@ -93,6 +101,9 @@
             </div>
             <div *ngIf="isSubCategoryList">
                 <app-sub-category-list></app-sub-category-list>
+            </div>
+            <div *ngIf="isActorList">
+                <app-actor-list></app-actor-list>
             </div>
         </div>
     </div>
