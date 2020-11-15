@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AccessdeniedComponent } from './accessdenied.component';
 
@@ -6,7 +6,7 @@ describe('AccessdeniedComponent', () => {
   let component: AccessdeniedComponent;
   let fixture: ComponentFixture<AccessdeniedComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AccessdeniedComponent ]
     })
