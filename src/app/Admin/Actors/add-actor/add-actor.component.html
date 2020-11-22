@@ -1,1 +1,47 @@
-<p>add-actor works!</p>
+<div class="container mt-4 mb-4">
+    <h5>{{title}}</h5>
+    <hr class="mb-4" />
+    <button type="button" class="btn btn-primary mb-4" (click)="GoToList()">العودة لقائمة الممثلين</button>
+    <div class="alert alert-success" role="alert" *ngIf="message">
+        <strong>{{message}}</strong>
+    </div>
+    <div class="actor-container">
+        <div class="actor">
+            <form [formGroup]="actorForm" (ngSubmit)="AddActor()">
+                <div class="form-group">
+                    <label for="actorName">اسم الممثل</label>
+                    <input type="text" formControlName="actorName" class="form-control" id="actorName"
+                        placeholder="اسم الممثل"
+                        [ngClass]="{'is-invalid' : this.actorForm.get('actorName').invalid && this.actorForm.get('actorName').touched}">
+                    <div class="text-danger" *ngIf="this.actorForm.get('actorName').invalid &&
+                        this.actorForm.get('actorName').touched && this.actorForm.get('actorName').value === ''">
+                        {{messageValidate.actorName.required}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" formControlName="actorImage" accept="image/*"
+                                    class="custom-file-input" id="actorImage" (change)="HandleFiles($event)"
+                                    aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label upload-lbl" for="actorImage">
+                                    <span *ngIf="img !== null">{{img.name}}</span>
+                                    <span *ngIf="img === null">اختر صورة</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="text-danger" *ngIf="this.actorForm.get('actorImage').touched && img === null">
+                            {{messageValidate.actorImage.required}}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img id="image" class="img-fluid rounded border bg-light" [src]="urlImage" />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary"
+                    [disabled]="actorForm.invalid || img === null">{{btnTitle}}</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -38,6 +38,9 @@ export class DashboardComponent implements OnInit {
     } else if (sessionStorage.getItem("subcat")) {
       this.GetSubCategoryList();
       sessionStorage.removeItem("subcat");
+    }  else if (sessionStorage.getItem("actor")) {
+      this.GetActorList();
+      sessionStorage.removeItem("actor");
     } 
   }
 

@@ -96,4 +96,12 @@ export class AdminService {
   GetAllActors(): Observable<Actor[]> {
     return this.http.get<Actor[]>(this.baseUrl + 'GetAllActors', this.headers).pipe();
   }
+
+  AddActor(formData: FormData) {
+    return this.http.post(this.baseUrl + 'AddActor', formData, { withCredentials: true }).pipe();
+  }
+
+  GetActor(id: number): Observable<Actor> {
+    return this.http.get<Actor>(this.baseUrl + 'GetActor/' + id, this.headers).pipe();
+  }
 }
