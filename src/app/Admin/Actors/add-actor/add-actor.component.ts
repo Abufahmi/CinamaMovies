@@ -74,12 +74,23 @@ export class AddActorComponent implements OnInit {
       const fd = new FormData();
       fd.append('image', this.img);
       fd.append('actorName', this.actorForm.value.actorName);
-      this.service.AddActor(fd).subscribe(actor => {
-        this.message = 'تم اضافة بيانات الممثل بنجاح';
-      }, ex => {
-        console.log(ex);
-        this.message = null;
-      })
+      if (this.id > 0) {
+        fd.append('id', this.id.toString());
+        this.service.EditActor(fd).subscribe(actor => {
+          this.GoToList();
+        }, ex => {
+          console.log(ex);
+          this.message = null;
+        })
+      } else {
+        this.service.AddActor(fd).subscribe(actor => {
+          this.message = 'تم اضافة بيانات الممثل بنجاح';
+        }, ex => {
+          console.log(ex);
+          this.message = null;
+        })
+      }
+
     }
   }
 

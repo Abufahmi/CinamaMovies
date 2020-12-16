@@ -5,9 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
+            // "type": "chrome",
+            // "request": "launch",
+            // "name": "Launch Chrome against localhost",
+            // "url": "http://localhost:4200",
+            // "webRoot": "${workspaceFolder}"
+            "type": "edge",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
+            "version": "canary",
+            "name": "Launch Edge against localhost",
             "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}"
         }

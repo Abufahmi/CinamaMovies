@@ -10,6 +10,7 @@ import { EditUserRoleModel } from '../models/EditUserRoleModel';
 import { Category } from '../models/CategoryModel';
 import { SubCategory } from '../models/SubCatgory';
 import { Actor } from '../models/Actor';
+import { Movie } from '../models/Movie';
 
 @Injectable({
   providedIn: 'root'
@@ -103,5 +104,17 @@ export class AdminService {
 
   GetActor(id: number): Observable<Actor> {
     return this.http.get<Actor>(this.baseUrl + 'GetActor/' + id, this.headers).pipe();
+  }
+
+  EditActor(formData: FormData) {
+    return this.http.put(this.baseUrl + 'EditActor', formData, { withCredentials: true }).pipe();
+  }
+
+  DeleteAllActors(ids: string[]) {
+    return this.http.post(this.baseUrl + 'DeleteAllActors', ids, this.headers).pipe();
+  }
+
+  GetAllMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.baseUrl + 'GetMovies', this.headers).pipe();
   }
 }

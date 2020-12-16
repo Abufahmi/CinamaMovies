@@ -1,0 +1,79 @@
+<div class="container mt-4 mb-4">
+    <form [formGroup]="movieForm" (ngSubmit)="AddMovie()">
+        <div class="card">
+            <h4 class="card-title text-right pt-3 pr-3">المعلومات الاساسية</h4>
+            <div class="card-body">
+                <div class="form-group">
+                    <select class="custom-select" formControlName="catId" required>
+                        <option selected value="0" disabled>اختر التصنيف</option>
+                        <option *ngFor="let cat of subCategories" [value]="cat.id">{{cat.subCategoryName}}</option>
+                    </select>
+                    <div class="text-danger text-right"
+                        *ngIf="this.movieForm.get('catId').value < 1 && this.movieForm.get('catId').touched">
+                        {{messages.catId.requierd}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" formControlName="movieName" class="form-control" name="" id=""
+                        placeholder="اسم الفيلم">
+                    <div class="text-danger text-right"
+                        *ngIf="this.movieForm.get('movieName').errors.required && this.movieForm.get('movieName').touched">
+                        {{messages.movieName.requierd}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea type="text" rows="4" formControlName="story" class="form-control" name="" id=""
+                        placeholder="القصة"></textarea>
+                    <div class="text-danger text-right"
+                        *ngIf="this.movieForm.get('story').errors.required && this.movieForm.get('story').touched">
+                        {{messages.story.requierd}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" formControlName="trailer" class="form-control" name="" id=""
+                        placeholder="اعلان الفيلم">
+                    <div class="text-danger text-right"
+                        *ngIf="this.movieForm.get('trailer').errors.required && this.movieForm.get('trailer').touched">
+                        {{messages.story.requierd}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" formControlName="post" accept="image/*" class="custom-file-input"
+                                    id="actorImage" (change)="HandleFiles($event)"
+                                    aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label upload-lbl" for="post">
+                                    <span *ngIf="img !== null">{{img.name}}</span>
+                                    <span *ngIf="img === null">اختر صورة</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="text-danger" *ngIf="this.movieForm.get('post').touched && img === null">
+                            {{messages.post.requierd}}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img id="image" class="img-fluid rounded border bg-light" [src]="urlImage" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-3">
+            <h4 class="card-title pt-3 pr-3">الممثلين</h4>
+            <div class="card-body">
+                <div class="form-group">
+                    <select class="custom-select" formControlName="actorId" required>
+                        <option selected value="0" disabled>اختر الممثل</option>
+                        <option *ngFor="let act of actors" [value]="act.id">{{act.actorName}}</option>
+                    </select>
+                    <div class="text-danger text-right"
+                        *ngIf="this.movieForm.get('actorId').value < 1 && this.movieForm.get('actorId').touched">
+                        {{messages.catId.requierd}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

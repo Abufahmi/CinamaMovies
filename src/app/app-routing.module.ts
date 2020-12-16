@@ -15,6 +15,7 @@ import { EditUserRoleComponent } from './Admin/edit-user-role/edit-user-role.com
 import { AddCategoryComponent } from './Admin/Categories/add-category/add-category.component';
 import { SubCategoryComponent } from './Admin/SubCategories/sub-category/sub-category.component';
 import { AddActorComponent } from './Admin/Actors/add-actor/add-actor.component';
+import { AddMovieComponent } from './Admin/Movies/add-movie/add-movie.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,8 @@ const routes: Routes = [
   { path: 'editsubcategory/:id/:id1/:id2', component: SubCategoryComponent },
   { path: 'addactor', component: AddActorComponent },
   { path: 'editactor/:id', component: AddActorComponent },
+  { path: 'editmovie/:id', component: AddMovieComponent },
+  { path: 'addmovie', component: AddMovieComponent },
 
 ];
 

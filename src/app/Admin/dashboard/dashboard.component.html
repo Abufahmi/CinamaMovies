@@ -37,7 +37,7 @@
                         <a (click)="GetActorList()">قائمة الممثلين</a>
                     </li>
                     <li>
-                        <a (click)="GetSubCategoryList()">التصنيفات الفرعية</a>
+                        <a (click)="GetMovieList()">قائمة الأفلام</a>
                     </li>
                 </ul>
             </li>
@@ -104,6 +104,9 @@
             </div>
             <div *ngIf="isActorList">
                 <app-actor-list></app-actor-list>
+            </div>
+            <div *ngIf="isMovieList">
+                <app-movie-list></app-movie-list>
             </div>
         </div>
     </div>

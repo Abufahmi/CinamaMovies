@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   isCategoryList: boolean;
   isSubCategoryList: boolean;
   isActorList: boolean;
+  isMovieList: boolean;
 
   ngOnInit(): void {
     this.isUserList = false;
@@ -23,6 +24,7 @@ export class DashboardComponent implements OnInit {
     this.isUserRolesList = false;
     this.isCategoryList = false;
     this.isAddUser = false;
+    this.isMovieList = false;
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
@@ -50,6 +52,7 @@ export class DashboardComponent implements OnInit {
     this.isCategoryList = false;
     this.isAddUser = false;
     this.isUserRolesList = false;
+    this.isMovieList = false;
     return this.isUserList = true;
   }
 
@@ -59,6 +62,7 @@ export class DashboardComponent implements OnInit {
     this.isCategoryList = false;
     this.isUserList = false;
     this.isUserRolesList = false;
+    this.isMovieList = false;
     return this.isAddUser = true;
   }
 
@@ -68,6 +72,7 @@ export class DashboardComponent implements OnInit {
     this.isCategoryList = false;
     this.isAddUser = false;
     this.isUserList = false
+    this.isMovieList = false;
     return this.isUserRolesList = true;
   }
 
@@ -77,6 +82,7 @@ export class DashboardComponent implements OnInit {
     this.isUserRolesList = false;
     this.isAddUser = false;
     this.isUserList = false
+    this.isMovieList = false;
     return this.isCategoryList = true;
   }
 
@@ -86,6 +92,7 @@ export class DashboardComponent implements OnInit {
     this.isUserRolesList = false;
     this.isAddUser = false;
     this.isUserList = false
+    this.isMovieList = false;
     return this.isSubCategoryList = true;
   }
 
@@ -95,6 +102,17 @@ export class DashboardComponent implements OnInit {
     this.isAddUser = false;
     this.isUserList = false;
     this.isSubCategoryList = false;
+    this.isMovieList = false;
     return this.isActorList = true;
+  }
+
+  GetMovieList(){
+    this.isCategoryList = false;
+    this.isUserRolesList = false;
+    this.isAddUser = false;
+    this.isUserList = false;
+    this.isSubCategoryList = false;
+    this.isActorList = false;
+    return this.isMovieList = true;
   }
 }

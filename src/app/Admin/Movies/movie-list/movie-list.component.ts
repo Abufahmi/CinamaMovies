@@ -1,46 +1,50 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
-import { Actor } from 'src/app/models/Actor';
+import { Movie } from 'src/app/models/Movie';
 import { AdminService } from 'src/app/services/admin.service';
 
-
 @Component({
-  selector: 'app-actor-list',
-  templateUrl: './actor-list.component.html',
-  styleUrls: ['./actor-list.component.css']
+  selector: 'app-movie-list',
+  templateUrl: './movie-list.component.html',
+  styleUrls: ['./movie-list.component.css']
 })
-export class ActorListComponent implements OnInit {
+export class MovieListComponent implements OnInit {
 
   constructor(
     private service: AdminService,
     private router: Router
   ) { }
 
+  movies: Movie[];
   num: number;
-  actor: Actor;
-  actors: Actor[];
-
 
   ngOnInit(): void {
     this.num = 0;
-    this.actor = {
-      id: 0,
-      actorPicture: '',
-      actorName: ''
-    }
-    this.actors = [];
-    this.getActors();
+    this.movies = [];
+    this.getMovies();
   }
 
-  AddActor() {
-    this.router.navigate(['addactor']);
+  getMovies() {
+    this.service.GetAllMovies().subscribe(list => {
+      this.movies = list;
+      console.log(list);
+    }, ex => console.log(ex));
   }
 
-  EditActor(id: number) {
+  EditMovie(id: number) {
     if (id) {
-      this.router.navigate(['/editactor', id]);
+      this.router.navigate(['/editsubcategory', id]);
     }
+  }
+
+  DeleteCount() {
+    var count = $(".ckitem:checked").length;
+    this.num = count;
+  }
+
+  AddMovie() {
+    this.router.navigate(['addmovie']);
   }
 
   IsDelete() {
@@ -66,19 +70,11 @@ export class ActorListComponent implements OnInit {
         }
       }
 
-      this.service.DeleteAllActors(ids).subscribe(s => {
-        this.getActors();
+      this.service.DeleteAllSubCategory(ids).subscribe(s => {
+        this.getMovies();
         $("#btnClose").trigger("click");
       }, ex => console.log(ex));
     }
-  }
-
-  getActors() {
-    this.service.GetAllActors().subscribe(list => {
-      this.actors = list;
-    }, ex => {
-      console.log(ex);
-    })
   }
 
   SelectAll() {
@@ -110,8 +106,4 @@ export class ActorListComponent implements OnInit {
     });
   }
 
-  DeleteCount() {
-    var count = $(".ckitem:checked").length;
-    this.num = count;
-  }
 }
