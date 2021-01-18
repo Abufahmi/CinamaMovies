@@ -117,4 +117,8 @@ export class AdminService {
   GetAllMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.baseUrl + 'GetMovies', this.headers).pipe();
   }
+  
+  AddMovie(fd: FormData) {
+    return this.http.post(this.baseUrl + 'AddMovie', fd, { withCredentials: true }).pipe();
+  }
 }

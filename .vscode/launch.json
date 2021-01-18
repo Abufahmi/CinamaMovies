@@ -5,17 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            // "type": "chrome",
-            // "request": "launch",
-            // "name": "Launch Chrome against localhost",
-            // "url": "http://localhost:4200",
-            // "webRoot": "${workspaceFolder}"
-            "type": "edge",
+            "type": "chrome",
             "request": "launch",
-            "version": "canary",
-            "name": "Launch Edge against localhost",
+            "name": "Launch Chrome against localhost",
             "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}"
+            // "type": "edge",
+            // "request": "launch",
+            // "version": "canary",
+            // "name": "Launch Edge against localhost",
+            // "url": "http://localhost:4200",
+            // "webRoot": "${workspaceFolder}"
         }
     ]
 }
