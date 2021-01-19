@@ -1,5 +1,5 @@
 <div class="container mt-4 mb-4">
-    <!-- <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="sucMsg !== null">
+    <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="sucMsg !== null">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
@@ -12,7 +12,7 @@
             <span class="sr-only">Close</span>
         </button>
         <strong>{{errMsg}}</strong>
-    </div> -->
+    </div>
     <form [formGroup]="movieForm" (ngSubmit)="AddMovie()">
         <div class="card">
             <h4 class="card-title text-right pt-3 pr-3">المعلومات الاساسية</h4>
@@ -155,7 +155,7 @@
                         </video>
                     </div>
                 </div>
-                <!-- <button type="button" class="btn btn-primary mb-3" (click)="AddLink()">اضافة رابط تحميل جديد</button>
+            <button type="button" class="btn btn-primary mb-3" (click)="AddLink()">اضافة رابط تحميل جديد</button>
                 <div>
                     <div formArrayName="links" class="form-group" *ngFor="let link of links.controls; let i = index">
                         <div [formGroupName]="i" *ngIf="i > 0">
@@ -172,9 +172,9 @@
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
-        <!-- <button type="submit" name="" id="" class="btn btn-success btn-lg btn-block mt-4 mb-4" [disabled]="movieForm.invalid || actorIds.length <= 0">اضافة فيلم جديد</button> -->
+        <button type="submit" name="" id="" class="btn btn-success btn-lg btn-block mt-4 mb-4" [disabled]="movieForm.invalid || actorIds.length <= 0">اضافة فيلم جديد</button>
     </form>
 </div>

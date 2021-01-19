@@ -49,17 +49,17 @@ export class AddMovieComponent implements OnInit {
   movieForm: FormGroup;
   subCategories: SubCategory[];
   img: File;
-  // sucMsg: string;
-  // errMsg: string;
+  sucMsg: string;
+  errMsg: string;
   film: File;
   urlImage: string;
   actors: Actor[];
   actorIds: number[];
-  // uploadLinks: string[];
+  uploadLinks: string[];
   isActorExists: boolean;
   isAddActor: boolean;
   btnActor: string;
-  //linkVal = '(https?|ftp)://(www\d?|[a-zA-Z0-9]+)?\.[a-zA-Z0-9-]+(\:|\.)([a-zA-Z0-9.]+|(\d+)?)([/?].*)?';
+  linkVal = '(https?|ftp)://(www\d?|[a-zA-Z0-9]+)?\.[a-zA-Z0-9-]+(\:|\.)([a-zA-Z0-9.]+|(\d+)?)([/?].*)?';
 
   ngOnInit(): void {
     this.subCategories = [];
@@ -68,18 +68,17 @@ export class AddMovieComponent implements OnInit {
     this.film = null;
     this.urlImage = 'assets/images/img.png';
     this.actorIds = [];
-    // this.uploadLinks = [];
+    this.uploadLinks = [];
     this.isActorExists = false;
     this.isAddActor = false;
     this.btnActor = 'اضافة ممثل';
-    // this.sucMsg = null;
-    // this.errMsg = null;
+    this.sucMsg = null;
+    this.errMsg = null;
 
     this.movieForm = this.fb.group({
       movieName: ['', Validators.required],
       story: ['', Validators.required],
-      trailer: ['', Validators.required],
-      // trailer: ['', [Validators.required, Validators.pattern(this.linkVal)]],
+      trailer: ['', [Validators.required, Validators.pattern(this.linkVal)]],
       catId: [0, Validators.required],
       actorId: [0, Validators.required],
       post: [null, Validators.required],
@@ -87,24 +86,24 @@ export class AddMovieComponent implements OnInit {
       actorControl: this.fb.array([
         this.myActorGroup(0, '')
       ]),
-      // links: this.fb.array([
-      //   this.myLinkGroup()
-      // ])
+      links: this.fb.array([
+        this.myLinkGroup()
+      ])
     })
 
     this.GetSubCategories();
     this.GetActors()
   }
 
-  // get links() {
-  //   return this.movieForm.get('links') as FormArray;
-  // }
+  get links() {
+    return this.movieForm.get('links') as FormArray;
+  }
 
-  // myLinkGroup(): FormGroup {
-  //   return this.fb.group({
-  //     link: ''
-  //   })
-  // }
+  myLinkGroup(): FormGroup {
+    return this.fb.group({
+      link: ''
+    })
+  }
 
   get actorControl() {
     return this.movieForm.get('actorControl') as FormArray;
@@ -133,57 +132,57 @@ export class AddMovieComponent implements OnInit {
     })
   }
 
-  // isLinkValid(link: string) {
-  //   const validLink = new RegExp('(https?|ftp)://(www\d?|[a-zA-Z0-9]+)?\.[a-zA-Z0-9-]+(\:|\.)([a-zA-Z0-9.]+|(\d+)?)([/?].*)?');
-  //   if (!validLink.test(link)) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
+  isLinkValid(link: string) {
+    const validLink = new RegExp('(https?|ftp)://(www\d?|[a-zA-Z0-9]+)?\.[a-zA-Z0-9-]+(\:|\.)([a-zA-Z0-9.]+|(\d+)?)([/?].*)?');
+    if (!validLink.test(link)) {
+      return true;
+    }
+    return false;
+  }
 
-  // addExtraLinkIfExists() {
-  //   for (let li of this.links.controls) {
-  //     const val = li.value.link;
-  //     if (val !== null && val !== '') {
-  //       var exist = false;
-  //       for (let i = 0; i < this.uploadLinks.length; i++) {
-  //         if (val === this.uploadLinks[i]) {
-  //           exist = true;
-  //           break;
-  //         }
-  //       }
-  //       if (!exist) {
-  //         this.uploadLinks.push(val);
-  //       }
-  //     }
-  //   }
-  //   return false;
-  // }
+  addExtraLinkIfExists() {
+    for (let li of this.links.controls) {
+      const val = li.value.link;
+      if (val !== null && val !== '') {
+        var exist = false;
+        for (let i = 0; i < this.uploadLinks.length; i++) {
+          if (val === this.uploadLinks[i]) {
+            exist = true;
+            break;
+          }
+        }
+        if (!exist) {
+          this.uploadLinks.push(val);
+        }
+      }
+    }
+    return false;
+  }
 
   AddMovie() {
     if (this.movieForm.valid && this.actorIds.length > 0) {
-      // this.addExtraLinkIfExists();
-      // const fd = new FormData();
-      // fd.append('image', this.img);
-      // fd.append('video', this.film);
-      // fd.append('story', this.movieForm.value.story);
-      // fd.append('movieName', this.movieForm.value.movieName);
-      // fd.append('trailer', this.movieForm.value.trailer);
-      // fd.append('catId', this.movieForm.value.catId);
-      // for (let i = 0; i < this.actorIds.length; i++) {
-      //   fd.append('actorsId[]', this.actorIds[i].toString());
-      // }
-      // for (let i = 0; i < this.uploadLinks.length; i++) {
-      //   fd.append('links[]', this.uploadLinks[i].toString());
-      // }
-      // this.adminService.AddMovie(fd).subscribe(success => {
-      //   this.sucMsg = 'تم اضافة الفيلم بنجاح';
-      //   this.errMsg = null;
-      // }, ex => {
-      //   console.log(ex);
-      //   this.sucMsg = null;
-      //   this.errMsg = ex.console.error();
-      // })
+      this.addExtraLinkIfExists();
+      const fd = new FormData();
+      fd.append('image', this.img);
+      fd.append('video', this.film);
+      fd.append('story', this.movieForm.value.story);
+      fd.append('movieName', this.movieForm.value.movieName);
+      fd.append('trailer', this.movieForm.value.trailer);
+      fd.append('catId', this.movieForm.value.catId);
+      for (let i = 0; i < this.actorIds.length; i++) {
+        fd.append('actorsId[]', this.actorIds[i].toString());
+      }
+      for (let i = 0; i < this.uploadLinks.length; i++) {
+        fd.append('links[]', this.uploadLinks[i].toString());
+      }
+      this.adminService.AddMovie(fd).subscribe(success => {
+        this.sucMsg = 'تم اضافة الفيلم بنجاح';
+        this.errMsg = null;
+      }, ex => {
+        console.log(ex);
+        this.sucMsg = null;
+        this.errMsg = ex;
+      })
     }
   }
 
@@ -247,18 +246,18 @@ export class AddMovieComponent implements OnInit {
   HandleFilmes(event: any) {
     if (event.target.files !== null && event.target.files.length > 0) {
       this.film = event.target.files[0];
-      // var id = $('#mov');
-      // id[0].src = URL.createObjectURL(this.film);
-      // id.parent()[0].load();
+      var id = $('#mov');
+      id[0].src = URL.createObjectURL(this.film);
+      id.parent()[0].load();
     } else {
       this.film = null;
-      // var id = $('#mov');
-      // id[0].src = '';
-      // id.parent()[0].load();
+      var id = $('#mov');
+      id[0].src = '';
+      id.parent()[0].load();
     }
   }
 
-  // AddLink() {
-  //   (<FormArray>this.movieForm.get('links')).push(this.myLinkGroup());
-  // }
+  AddLink() {
+    (<FormArray>this.movieForm.get('links')).push(this.myLinkGroup());
+  }
 }
