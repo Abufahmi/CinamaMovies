@@ -4,6 +4,8 @@ import { SubCategory } from 'src/app/models/SubCatgory';
 import * as $ from 'jquery';
 import { AdminService } from 'src/app/services/admin.service';
 import { Actor } from 'src/app/models/Actor';
+import { Movie } from 'src/app/models/Movie';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-movie',
@@ -14,12 +16,14 @@ export class AddMovieComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private router:Router
   ) { }
 
   messages = {
     movieName: {
-      requierd: 'اسم الفيلم مطلوب'
+      requierd: 'اسم الفيلم مطلوب',
+      exists: 'اسم الفيلم موجود مسبقا يرجي اختيار اخر'
     },
     story: {
       requierd: 'القصة مطلوبة'
@@ -48,6 +52,7 @@ export class AddMovieComponent implements OnInit {
 
   movieForm: FormGroup;
   subCategories: SubCategory[];
+  movies: Movie[];
   img: File;
   sucMsg: string;
   errMsg: string;
@@ -64,6 +69,7 @@ export class AddMovieComponent implements OnInit {
   ngOnInit(): void {
     this.subCategories = [];
     this.actors = [];
+    this.movies = [];
     this.img = null;
     this.film = null;
     this.urlImage = 'assets/images/img.png';
@@ -92,7 +98,8 @@ export class AddMovieComponent implements OnInit {
     })
 
     this.GetSubCategories();
-    this.GetActors()
+    this.GetActors();
+    this.getMovies();
   }
 
   get links() {
@@ -160,7 +167,8 @@ export class AddMovieComponent implements OnInit {
   }
 
   AddMovie() {
-    if (this.movieForm.valid && this.actorIds.length > 0) {
+    const movName = this.movieForm.get('movieName').value;
+    if (this.movieForm.valid && this.actorIds.length > 0 && !this.isMovieExists(movName)) {
       this.addExtraLinkIfExists();
       const fd = new FormData();
       fd.append('image', this.img);
@@ -259,5 +267,27 @@ export class AddMovieComponent implements OnInit {
 
   AddLink() {
     (<FormArray>this.movieForm.get('links')).push(this.myLinkGroup());
+  }
+
+  getMovies() {
+    this.adminService.GetAllMovies().subscribe(list => {
+      this.movies = list;
+      console.log(list);
+    }, ex => console.log(ex));
+  }
+
+  isMovieExists(input: string) {
+    for (let i = 0; i < this.movies.length; i++) {
+      const movieName = this.movies[i].movieName.toLowerCase();
+      if (movieName == input?.toLowerCase()) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  backToList() {
+    sessionStorage.setItem('movie', 'movie');
+    this.router.navigate(['/controlpanel']);
   }
 }

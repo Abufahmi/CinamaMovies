@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import { Movie } from 'src/app/models/Movie';
@@ -13,16 +14,22 @@ export class MovieListComponent implements OnInit {
 
   constructor(
     private service: AdminService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) { }
 
   movies: Movie[];
   num: number;
+  formSearch: FormGroup;
 
   ngOnInit(): void {
     this.num = 0;
     this.movies = [];
     this.getMovies();
+
+    this.formSearch = this.fb.group({
+      search: ['', Validators.required]
+    })
   }
 
   getMovies() {
@@ -34,7 +41,19 @@ export class MovieListComponent implements OnInit {
 
   EditMovie(id: number) {
     if (id) {
-      this.router.navigate(['/editsubcategory', id]);
+      this.router.navigate(['editmovie', id]);
+    }
+  }
+
+  EditLinks(id: number) {
+    if (id) {
+      this.router.navigate(['editlinks', id]);
+    }
+  }
+
+  EditActors(id: number) {
+    if (id) {
+      this.router.navigate(['editmovieactor', id]);
     }
   }
 
@@ -70,7 +89,7 @@ export class MovieListComponent implements OnInit {
         }
       }
 
-      this.service.DeleteAllSubCategory(ids).subscribe(s => {
+      this.service.DeleteAllMovies(ids).subscribe(s => {
         this.getMovies();
         $("#btnClose").trigger("click");
       }, ex => console.log(ex));
@@ -104,6 +123,17 @@ export class MovieListComponent implements OnInit {
         }
       });
     });
+  }
+
+  onSearch() {
+    if (this.formSearch.valid) {
+      const search = this.formSearch.value.search;
+      this.service.SearchMovies(search).subscribe(list => {
+        this.movies = list;
+      }, ex => {
+        console.log(ex);
+      })
+    }
   }
 
 }

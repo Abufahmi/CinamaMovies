@@ -117,8 +117,24 @@ export class AdminService {
   GetAllMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.baseUrl + 'GetMovies', this.headers).pipe();
   }
-  
+
   AddMovie(fd: FormData) {
     return this.http.post(this.baseUrl + 'AddMovie', fd, { withCredentials: true }).pipe();
+  }
+
+  GetMovie(id: number): Observable<Movie> {
+    return this.http.get<Movie>(this.baseUrl + 'GetMovie/' + id, this.headers).pipe();
+  }
+
+  EditMovie(fd: FormData) {
+    return this.http.put(this.baseUrl + 'EditMovie', fd, { withCredentials: true }).pipe();
+  }
+
+  SearchMovies(search: string): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.baseUrl + 'SearchMovies/' + search, this.headers).pipe();
+  }
+
+  DeleteAllMovies(ids: string[]) {
+    return this.http.post(this.baseUrl + 'DeleteAllMovies', ids, this.headers).pipe();
   }
 }

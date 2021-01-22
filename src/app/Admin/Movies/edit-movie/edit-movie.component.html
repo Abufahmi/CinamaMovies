@@ -1,0 +1,78 @@
+<div class="container mt-4 mb-4">
+    <button type="button" class="btn btn-primary mb-3" (click)="backToList()">العودة لقائمة الافلام</button>
+
+    <form [formGroup]="movieForm" (ngSubmit)="editMovie()">
+        <div class="card">
+            <h4 class="card-title text-right pt-3 pr-3">تعديل بيانات فيلم</h4>
+            <div class="card-body">
+                <div class="alert alert-danger" role="alert" *ngIf="Msg">
+                    <strong>{{Msg}}</strong>
+                </div>
+                <div class="form-group">
+                    <select class="custom-select" formControlName="catId" required>
+                        <option selected value="0" disabled>اختر التصنيف</option>
+                        <option *ngFor="let cat of subCategories" [value]="cat.id">{{cat.subCategoryName}}</option>
+                    </select>
+                    <div class="text-danger text-right"
+                        *ngIf="this.movieForm.get('catId').value < 1 && this.movieForm.get('catId').touched">
+                        {{messages.catId.requierd}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" formControlName="movieName" class="form-control" name="" id=""
+                        placeholder="اسم الفيلم">
+                    <div class="text-danger"
+                        *ngIf="this.movieForm.get('movieName').invalid && this.movieForm.get('movieName').touched">
+                        {{messages.movieName.requierd}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea type="text" rows="4" formControlName="story" class="form-control" name="" id=""
+                        placeholder="القصة"></textarea>
+                    <div class="text-danger text-right"
+                        *ngIf="this.movieForm.get('story').invalid && this.movieForm.get('story').touched">
+                        {{messages.story.requierd}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" formControlName="trailer" class="form-control" name="" id=""
+                        placeholder="رابط اعلان الفيلم">
+                    <div class="text-danger text-right"
+                        *ngIf="this.movieForm.get('trailer').invalid && this.movieForm.get('trailer').touched">
+                        <div *ngIf="this.movieForm.get('trailer').errors?.pattern">
+                            {{messages.trailer.valid}}
+                        </div>
+                        <div *ngIf="this.movieForm.get('trailer').errors.required">
+                            {{messages.trailer.requierd}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input type="file" formControlName="post" accept="image/*" class="custom-file-input"
+                                    id="actorImage" (change)="HandleFiles($event)"
+                                    aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label upload-lbl" for="post">
+                                    <span *ngIf="img !== null">{{img.name}}</span>
+                                    <span *ngIf="img === null">اختر ملصق الفيلم او المسلسل</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="text-danger" *ngIf="this.movieForm.get('post').touched && img === null">
+                            {{messages.post.requierd}}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img id="image" class="img-fluid rounded border bg-light" [src]="urlImage" />
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-block mt-3" [disabled]="movieForm.invalid || img === null">تعديل</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

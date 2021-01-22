@@ -43,7 +43,10 @@ export class DashboardComponent implements OnInit {
     }  else if (sessionStorage.getItem("actor")) {
       this.GetActorList();
       sessionStorage.removeItem("actor");
-    } 
+    } else if (sessionStorage.getItem("movie")) {
+      this.GetMovieList();
+      sessionStorage.removeItem("movie");
+    }
   }
 
   CheckUser(): boolean {

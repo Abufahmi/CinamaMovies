@@ -3,38 +3,58 @@
         <strong>قائمة الأفلام</strong>
     </div>
     <button type="button" class="btn btn-outline-success mb-3" (click)="AddMovie()">اضافة فيلم</button>
-    <table id="tbl" class="table table-light rounded mb-3">
-        <thead>
-            <tr class="bg-dark text-light">
-                <th>اسم الفيلم</th>
-                <th>التصنيف</th>
-                <th></th>
-                <th>
-                    <input type="checkbox" class="ckheader" (change)="SelectAll()">
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of movies">
-                <td scope="row">
-                    {{item.movieName}}
-                </td>
-                <td>
-                    {{item.subCategoty.subCategoryName}}
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary btn-sm" (click)="EditMovie(item.id)">تعديل</button>
-                </td>
-                <td>
-                    <input type="checkbox" class="ckitem" value="{{item.id}}">
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div>
-        <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modelId"
-            (click)="DeleteCount()" [disabled]="!IsDelete()">Delete
-        </button>
+    <form [formGroup]="formSearch" (ngSubmit)="onSearch()">
+        <div class="row mb-3 mr-0 ml-0">
+            <input type="text" class="form-control col-md-5" formControlName="search" placeholder="البحث ....">
+            <button type="submit" class="btn btn-dark col-md-1" [disabled]="formSearch.invalid">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </form>
+    <div class="" *ngIf="movies.length > 0">
+        <table id="tbl" class="table table-light rounded mb-3">
+            <thead>
+                <tr class="bg-dark text-light">
+                    <th>اسم الفيلم</th>
+                    <th>التصنيف</th>
+                    <th></th>
+                    <th>
+                        <input type="checkbox" class="ckheader" (change)="SelectAll()">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of movies">
+                    <td scope="row">
+                        {{item.movieName}}
+                    </td>
+                    <td>
+                        {{item.subCategory.subCategoryName}}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" (click)="EditMovie(item.id)">تعديل</button>
+                        <button type="button" class="btn btn-info btn-sm mr-2" (click)="EditLinks(item.id)">روابط
+                            التحميل</button>
+                        <button type="button" class="btn btn-warning btn-sm mr-2"
+                            (click)="EditActors(item.id)">الممثلين</button>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="ckitem" value="{{item.id}}">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modelId"
+                (click)="DeleteCount()" [disabled]="!IsDelete()">Delete
+            </button>
+        </div>
+    </div>
+    <div class="" *ngIf="movies.length < 1">
+        <div class="alert alert-primary" role="alert">
+            <strong>لا يوجد بيانات بالوقت الحالي</strong>
+            <button type="button" class="btn btn-dark mr-4" (click)="getMovies()">تحديث القائمة</button>
+        </div>
     </div>
 </div>
 
@@ -55,4 +75,3 @@
         </div>
     </div>
 </div>
-

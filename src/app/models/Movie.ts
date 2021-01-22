@@ -6,5 +6,5 @@ export class Movie {
     movieStory: string;
     movieTrailer: string;
     moviePost: string;
-    subCategoty: SubCategory
+    subCategory: SubCategory;
 }

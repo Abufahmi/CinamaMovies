@@ -1,12 +1,13 @@
 <div class="container mt-4 mb-4">
-    <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="sucMsg !== null">
+    <button type="button" class="btn btn-primary mb-3" (click)="backToList()">العودة لقائمة الافلام</button>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="sucMsg">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
         </button>
         <strong>{{sucMsg}}</strong>
     </div>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errMsg !== null">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errMsg">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
@@ -30,9 +31,12 @@
                 <div class="form-group">
                     <input type="text" formControlName="movieName" class="form-control" name="" id=""
                         placeholder="اسم الفيلم">
-                    <div class="text-danger text-right"
+                    <div class="text-danger"
                         *ngIf="this.movieForm.get('movieName').invalid && this.movieForm.get('movieName').touched">
                         {{messages.movieName.requierd}}
+                    </div>
+                    <div class="text-danger" *ngIf="isMovieExists(this.movieForm.get('movieName').value)">
+                        {{messages.movieName.exists}}
                     </div>
                 </div>
                 <div class="form-group">
@@ -155,7 +159,7 @@
                         </video>
                     </div>
                 </div>
-            <button type="button" class="btn btn-primary mb-3" (click)="AddLink()">اضافة رابط تحميل جديد</button>
+                <button type="button" class="btn btn-primary mb-3" (click)="AddLink()">اضافة رابط تحميل جديد</button>
                 <div>
                     <div formArrayName="links" class="form-group" *ngFor="let link of links.controls; let i = index">
                         <div [formGroupName]="i" *ngIf="i > 0">
@@ -166,7 +170,8 @@
                                 </button>
                                 <input type="text" class="form-control" [pattern]="linkVal" formControlName="link" id=""
                                     placeholder="رابط التحميل">
-                                <div class="text-danger" *ngIf="this.movieForm.get(['links', i]).touched && isLinkValid(link.value.link)">
+                                <div class="text-danger"
+                                    *ngIf="this.movieForm.get(['links', i]).touched && isLinkValid(link.value.link)">
                                     {{messages.link.requierd}}
                                 </div>
                             </div>
@@ -175,6 +180,8 @@
                 </div>
             </div>
         </div>
-        <button type="submit" name="" id="" class="btn btn-success btn-lg btn-block mt-4 mb-4" [disabled]="movieForm.invalid || actorIds.length <= 0">اضافة فيلم جديد</button>
+        <button type="submit" name="" id="" class="btn btn-success btn-lg btn-block mt-4 mb-4"
+            [disabled]="movieForm.invalid || actorIds.length <= 0 || isMovieExists(movieForm.get('movieName').value)">اضافة
+            فيلم جديد</button>
     </form>
 </div>
