@@ -17,8 +17,8 @@ import { SubCategoryComponent } from './Admin/SubCategories/sub-category/sub-cat
 import { AddActorComponent } from './Admin/Actors/add-actor/add-actor.component';
 import { AddMovieComponent } from './Admin/Movies/add-movie/add-movie.component';
 import { EditMovieComponent } from './Admin/Movies/edit-movie/edit-movie.component';
-import { EditLinksComponent } from './Admin/Movies/edit-links/edit-links.component';
-import { EditActorsComponent } from './Admin/Movies/edit-actors/edit-actors.component';
+import { EditMovieLinkComponent } from './Admin/MovieLinks/edit-movie-link/edit-movie-link.component';
+import { EditMovieActorComponent } from './Admin/MovieActors/edit-movie-actor/edit-movie-actor.component';
 
 
 const routes: Routes = [
@@ -42,8 +42,9 @@ const routes: Routes = [
   { path: 'editactor/:id', component: AddActorComponent },
   { path: 'editmovie/:id', component: EditMovieComponent },
   { path: 'addmovie', component: AddMovieComponent },
-  { path: 'editlinks/:id', component: EditLinksComponent },
-  { path: 'editmovieactor/:id', component: EditActorsComponent },
+  { path: 'editlinks/:id', component: EditMovieLinkComponent },
+  { path: 'addlink', component: EditMovieLinkComponent },
+  { path: 'editmovieactor/:id', component: EditMovieActorComponent },
 
 ];
 

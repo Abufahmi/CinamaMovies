@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditLinksComponent } from './edit-links.component';
+import { MovieActorListComponent } from './movie-actor-list.component';
 
-describe('EditLinksComponent', () => {
-  let component: EditLinksComponent;
-  let fixture: ComponentFixture<EditLinksComponent>;
+describe('MovieActorListComponent', () => {
+  let component: MovieActorListComponent;
+  let fixture: ComponentFixture<MovieActorListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditLinksComponent ]
+      declarations: [ MovieActorListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditLinksComponent);
+    fixture = TestBed.createComponent(MovieActorListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -30,8 +30,10 @@ import { ActorListComponent } from './Admin/Actors/actor-list/actor-list.compone
 import { MovieListComponent } from './Admin/Movies/movie-list/movie-list.component';
 import { AddMovieComponent } from './Admin/Movies/add-movie/add-movie.component';
 import { EditMovieComponent } from './Admin/Movies/edit-movie/edit-movie.component';
-import { EditLinksComponent } from './Admin/Movies/edit-links/edit-links.component';
-import { EditActorsComponent } from './Admin/Movies/edit-actors/edit-actors.component';
+import { MovieLinkListComponent } from './Admin/MovieLinks/movie-link-list/movie-link-list.component';
+import { EditMovieLinkComponent } from './Admin/MovieLinks/edit-movie-link/edit-movie-link.component';
+import { EditMovieActorComponent } from './Admin/MovieActors/edit-movie-actor/edit-movie-actor.component';
+import { MovieActorListComponent } from './Admin/MovieActors/movie-actor-list/movie-actor-list.component';
 
 
 @NgModule({
@@ -61,8 +63,10 @@ import { EditActorsComponent } from './Admin/Movies/edit-actors/edit-actors.comp
     MovieListComponent,
     AddMovieComponent,
     EditMovieComponent,
-    EditLinksComponent,
-    EditActorsComponent,
+    MovieLinkListComponent,
+    EditMovieLinkComponent,
+    EditMovieActorComponent,
+    MovieActorListComponent,
   ],
   imports: [
     BrowserModule,

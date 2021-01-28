@@ -11,6 +11,7 @@ import { Category } from '../models/CategoryModel';
 import { SubCategory } from '../models/SubCatgory';
 import { Actor } from '../models/Actor';
 import { Movie } from '../models/Movie';
+import { MovieLink } from '../models/MovieLink';
 
 @Injectable({
   providedIn: 'root'
@@ -136,5 +137,25 @@ export class AdminService {
 
   DeleteAllMovies(ids: string[]) {
     return this.http.post(this.baseUrl + 'DeleteAllMovies', ids, this.headers).pipe();
+  }
+
+  GetAllMovieLinks(search: string): Observable<MovieLink[]> {
+    return this.http.get<MovieLink[]>(this.baseUrl + 'GetAllMovieLinks/'+search, this.headers).pipe();
+  }
+
+  GetMovieLink(id: number): Observable<MovieLink> {
+    return this.http.get<MovieLink>(this.baseUrl + 'GetMovieLink/' + id, this.headers).pipe();
+  }
+
+  AddMovieLink(movieLink: MovieLink) {
+    return this.http.post(this.baseUrl + 'AddMovieLink', movieLink, this.headers).pipe();
+  }
+
+  EditMovieLink(fd: FormData) {
+    return this.http.put(this.baseUrl + 'EditMovieLink', fd, { withCredentials: true }).pipe();
+  }
+
+  DeleteAllMovieLinks(ids: string[]) {
+    return this.http.post(this.baseUrl + 'DeleteAllMovieLinks', ids, this.headers).pipe();
   }
 }

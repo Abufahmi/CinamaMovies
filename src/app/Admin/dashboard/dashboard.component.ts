@@ -10,21 +10,18 @@ export class DashboardComponent implements OnInit {
 
   constructor() { }
 
-  isUserList: boolean;
-  isAddUser: boolean;
-  isUserRolesList: boolean;
-  isCategoryList: boolean;
-  isSubCategoryList: boolean;
-  isActorList: boolean;
-  isMovieList: boolean;
+  isUserList: boolean = false;
+  isAddUser: boolean = false;
+  isUserRolesList: boolean = false;
+  isCategoryList: boolean = false;
+  isSubCategoryList: boolean = false;
+  isActorList: boolean = false;
+  isMovieList: boolean = false;
+  isMovieLinkList: boolean = false;
+  isMovieActorList: boolean = false;
+
 
   ngOnInit(): void {
-    this.isUserList = false;
-    this.isActorList = false;
-    this.isUserRolesList = false;
-    this.isCategoryList = false;
-    this.isAddUser = false;
-    this.isMovieList = false;
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
@@ -46,76 +43,69 @@ export class DashboardComponent implements OnInit {
     } else if (sessionStorage.getItem("movie")) {
       this.GetMovieList();
       sessionStorage.removeItem("movie");
+    } else if (sessionStorage.getItem("movielink")) {
+      this.GetMovieLinkList();
+      sessionStorage.removeItem("movielink");
+    } else if (sessionStorage.getItem("movieactor")) {
+      this.GetMovieActorList();
+      sessionStorage.removeItem("movieactor");
     }
   }
 
   CheckUser(): boolean {
-    this.isActorList = false;
-    this.isSubCategoryList = false;
-    this.isCategoryList = false;
-    this.isAddUser = false;
-    this.isUserRolesList = false;
-    this.isMovieList = false;
+    this.DisableLists();
     return this.isUserList = true;
   }
 
   AddUser() {
-    this.isActorList = false;
-    this.isSubCategoryList = false;
-    this.isCategoryList = false;
-    this.isUserList = false;
-    this.isUserRolesList = false;
-    this.isMovieList = false;
+    this.DisableLists();
     return this.isAddUser = true;
   }
 
   CheckUserRoleList(): boolean {
-    this.isActorList = false;
-    this.isSubCategoryList = false;
-    this.isCategoryList = false;
-    this.isAddUser = false;
-    this.isUserList = false
-    this.isMovieList = false;
+    this.DisableLists();
     return this.isUserRolesList = true;
   }
 
   GetCategoryList() {
-    this.isActorList = false;
-    this.isSubCategoryList = false;
-    this.isUserRolesList = false;
-    this.isAddUser = false;
-    this.isUserList = false
-    this.isMovieList = false;
+    this.DisableLists();
     return this.isCategoryList = true;
   }
 
   GetSubCategoryList() {
-    this.isActorList = false;
-    this.isCategoryList = false;
-    this.isUserRolesList = false;
-    this.isAddUser = false;
-    this.isUserList = false
-    this.isMovieList = false;
+    this.DisableLists();
     return this.isSubCategoryList = true;
   }
 
   GetActorList(){
-    this.isCategoryList = false;
-    this.isUserRolesList = false;
-    this.isAddUser = false;
-    this.isUserList = false;
-    this.isSubCategoryList = false;
-    this.isMovieList = false;
+    this.DisableLists();
     return this.isActorList = true;
   }
 
   GetMovieList(){
+    this.DisableLists();
+    return this.isMovieList = true;
+  }
+
+  GetMovieLinkList(){
+    this.DisableLists();
+    return this.isMovieLinkList = true;
+  }
+
+  GetMovieActorList(){
+    this.DisableLists();
+    return this.isMovieActorList = true;
+  }
+
+  DisableLists(){
     this.isCategoryList = false;
     this.isUserRolesList = false;
     this.isAddUser = false;
     this.isUserList = false;
     this.isSubCategoryList = false;
     this.isActorList = false;
-    return this.isMovieList = true;
+    this.isMovieList = false;
+    this.isMovieLinkList = false;
+    this.isMovieActorList=false;
   }
 }

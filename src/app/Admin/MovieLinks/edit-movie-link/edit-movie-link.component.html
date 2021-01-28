@@ -1,0 +1,72 @@
+<div class="container mt-4 mb-4">
+    <button type="button" class="btn btn-primary mb-4" (click)="backToList()">العودة لقائمة الروابط</button>
+    <div class="alert alert-success" role="alert" *ngIf="message">
+        <strong>{{message}}</strong>
+    </div>
+    <div class="link-container">
+        <div class="card">
+            <div class="card-body">
+                <h4>{{title}}</h4>
+                <hr class="mb-4" />
+                <form [formGroup]="linkForm" (ngSubmit)="AddMovieLink()">
+                    <div class="form-group">
+                        <label for="">الفيلم</label>
+                        <select class="custom-select" formControlName="movieId" required>
+                            <option selected value="0" disabled>اختر الفيلم</option>
+                            <option *ngFor="let mov of movies" [value]="mov.id">{{mov.movieName}}</option>
+                        </select>
+                        <div class="text-danger"
+                            *ngIf="this.linkForm.get('movieId').value < 1 && this.linkForm.get('movieId').touched">
+                            {{messageValidate.movieId.required}}
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="id > 0 && !linkForm.get('movLink')?.value.startsWith('http')">
+                        <div class="col-md-7">
+                            <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" formControlName="film" accept="video/*" class="custom-file-input"
+                                        id="film" (change)="HandleFilmes($event)"
+                                        aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label upload-lbl" for="film">
+                                        <span *ngIf="film !== null">{{film.name}}</span>
+                                        <span *ngIf="film === null">اختر الفيلم او المسلسل</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="text-danger" *ngIf="this.linkForm.get('film').touched && film === null">
+                                {{messageValidate.film.requierd}}
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <video controls width="100%">
+                                <source id="mov" src="" type="">
+                            </video>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="film === null">
+                        <label>رابط التحميل</label>
+                        <input type="text" class="form-control" formControlName="movLink" placeholder="رابط التحميل">
+                        <div class="text-danger" *ngIf="this.linkForm.get('movLink').invalid &&
+                    this.linkForm.get('movLink').touched && this.linkForm.get('movLink').value === ''">
+                            {{messageValidate.movLink.required}}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>الجودة</label>
+                        <input type="text" class="form-control" formControlName="quality" placeholder="الجودة">
+                    </div>
+
+                    <div class="form-group">
+                        <label>الدقة</label>
+                        <input type="number" class="form-control" formControlName="resolation" placeholder="الدقة">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"
+                        [disabled]="linkForm.invalid || this.linkForm.get('movieId').value < 1">{{btnTitle}}</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

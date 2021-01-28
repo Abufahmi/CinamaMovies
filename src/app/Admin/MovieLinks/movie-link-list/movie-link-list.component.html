@@ -1,0 +1,78 @@
+<div class="user-role">
+    <div class="alert alert-primary mb-3" role="alert">
+        <strong>قائمة الروابط</strong>
+    </div>
+    <button type="button" class="btn btn-outline-success mb-3" (click)="AddMovieLink()">انشاء رابط جديد</button>
+    <form [formGroup]="formSearch" (ngSubmit)="onSearch()">
+        <div class="row mb-3 mr-0 ml-0">
+            <input type="text" class="form-control col-md-5" formControlName="search" placeholder="البحث ....">
+            <button type="submit" class="btn btn-dark col-md-1" [disabled]="formSearch.invalid">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </form>
+    <div *ngIf="movieLinks?.length > 0">
+        <table id="tbl" class="table table-light rounded mb-3">
+            <thead>
+                <tr class="bg-dark text-light">
+                    <th>الاسم</th>
+                    <th>التصنيف</th>
+                    <th>الرابط</th>
+                    <th></th>
+                    <th>
+                        <input type="checkbox" class="ckheader" (change)="SelectAll()">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of movieLinks">
+                    <td scope="row">
+                        {{item.movie.movieName}}
+                    </td>
+                    <td>
+                        {{item.movie.subCategory.subCategoryName}}
+                    </td>
+                    <td>
+                        {{item.movLink}}
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm"
+                            (click)="EditMovieLink(item.id)">تعديل</button>
+                    </td>
+                    <td>
+                        <input type="checkbox" class="ckitem" value="{{item.id}}">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#modelId"
+                (click)="DeleteCount()" [disabled]="!IsDelete()">Delete
+            </button>
+        </div>
+    </div>
+    <div *ngIf="movieLinks?.length < 1">
+        <div class="alert alert-primary" role="alert">
+            <strong>لم يسفر البحث عن اي نتيجة حاول بشكل آخر أو حدث القائمة</strong>
+            <button type="button" class="btn btn-primary m-4" (click)="GetMovieLinks(null)">تحدث القائمة</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">تنبيه حذف</h5>
+            </div>
+            <div class="modal-body">
+                لقد قمت باختيار عدد {{num}} عنصر للحذف. هل تريد الحذف فعلا؟؟
+            </div>
+            <div class="modal-footer">
+                <button id="btnClose" type="button" class="btn btn-secondary" data-dismiss="modal">تراجع</button>
+                <button type="button" class="btn btn-danger" (click)="DeleteConfirm()">تأكيد الحذف</button>
+            </div>
+        </div>
+    </div>
+</div>
