@@ -30,25 +30,18 @@ export class DashboardComponent implements OnInit {
 
     if (sessionStorage.getItem("editUserRole")) {
       this.CheckUserRoleList();
-      sessionStorage.removeItem("editUserRole");
     } else if (sessionStorage.getItem("cat")) {
       this.GetCategoryList();
-      sessionStorage.removeItem("cat");
     } else if (sessionStorage.getItem("subcat")) {
       this.GetSubCategoryList();
-      sessionStorage.removeItem("subcat");
-    }  else if (sessionStorage.getItem("actor")) {
+    } else if (sessionStorage.getItem("actor")) {
       this.GetActorList();
-      sessionStorage.removeItem("actor");
     } else if (sessionStorage.getItem("movie")) {
       this.GetMovieList();
-      sessionStorage.removeItem("movie");
     } else if (sessionStorage.getItem("movielink")) {
       this.GetMovieLinkList();
-      sessionStorage.removeItem("movielink");
     } else if (sessionStorage.getItem("movieactor")) {
       this.GetMovieActorList();
-      sessionStorage.removeItem("movieactor");
     }
   }
 
@@ -64,40 +57,54 @@ export class DashboardComponent implements OnInit {
 
   CheckUserRoleList(): boolean {
     this.DisableLists();
+    sessionStorage.setItem('editUserRole', 'editUserRole');
+    this.removeAllSessions('editUserRole');
     return this.isUserRolesList = true;
   }
 
   GetCategoryList() {
     this.DisableLists();
+    sessionStorage.setItem('cat', 'cat');
+    this.removeAllSessions('cat');
     return this.isCategoryList = true;
   }
 
   GetSubCategoryList() {
     this.DisableLists();
+    sessionStorage.setItem('subcat', 'subcat');
+    this.removeAllSessions('subcat');
     return this.isSubCategoryList = true;
   }
 
-  GetActorList(){
+  GetActorList() {
     this.DisableLists();
+    sessionStorage.setItem('actor', 'actor');
+    this.removeAllSessions('actor');
     return this.isActorList = true;
   }
 
-  GetMovieList(){
+  GetMovieList() {
     this.DisableLists();
+    sessionStorage.setItem('movie', 'movie');
+    this.removeAllSessions('movie');
     return this.isMovieList = true;
   }
 
-  GetMovieLinkList(){
+  GetMovieLinkList() {
     this.DisableLists();
+    sessionStorage.setItem('movielink', 'movielink');
+    this.removeAllSessions('movielink');
     return this.isMovieLinkList = true;
   }
 
-  GetMovieActorList(){
+  GetMovieActorList() {
     this.DisableLists();
+    sessionStorage.setItem('movieactor', 'movieactor');
+    this.removeAllSessions('movieactor');
     return this.isMovieActorList = true;
   }
 
-  DisableLists(){
+  DisableLists() {
     this.isCategoryList = false;
     this.isUserRolesList = false;
     this.isAddUser = false;
@@ -106,6 +113,14 @@ export class DashboardComponent implements OnInit {
     this.isActorList = false;
     this.isMovieList = false;
     this.isMovieLinkList = false;
-    this.isMovieActorList=false;
+    this.isMovieActorList = false;
+  }
+
+  removeAllSessions(sessionName: string) {
+    Object.keys(sessionStorage).forEach(key=> {
+      if (key !== sessionName) {
+        sessionStorage.removeItem(key);
+      }
+    });
   }
 }

@@ -45,6 +45,7 @@ const routes: Routes = [
   { path: 'editlinks/:id', component: EditMovieLinkComponent },
   { path: 'addlink', component: EditMovieLinkComponent },
   { path: 'editmovieactor/:id', component: EditMovieActorComponent },
+  { path: 'addmovieactor', component: EditMovieActorComponent },
 
 ];
 

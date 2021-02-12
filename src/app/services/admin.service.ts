@@ -12,6 +12,7 @@ import { SubCategory } from '../models/SubCatgory';
 import { Actor } from '../models/Actor';
 import { Movie } from '../models/Movie';
 import { MovieLink } from '../models/MovieLink';
+import { MovieActor } from '../models/MovieActor';
 
 @Injectable({
   providedIn: 'root'
@@ -140,7 +141,7 @@ export class AdminService {
   }
 
   GetAllMovieLinks(search: string): Observable<MovieLink[]> {
-    return this.http.get<MovieLink[]>(this.baseUrl + 'GetAllMovieLinks/'+search, this.headers).pipe();
+    return this.http.get<MovieLink[]>(this.baseUrl + 'GetAllMovieLinks/' + search, this.headers).pipe();
   }
 
   GetMovieLink(id: number): Observable<MovieLink> {
@@ -157,5 +158,25 @@ export class AdminService {
 
   DeleteAllMovieLinks(ids: string[]) {
     return this.http.post(this.baseUrl + 'DeleteAllMovieLinks', ids, this.headers).pipe();
+  }
+
+  GetAllMovieActors(search: string): Observable<MovieActor[]> {
+    return this.http.get<MovieActor[]>(this.baseUrl + 'GetAllMovieActors/' + search, this.headers).pipe();
+  }
+
+  GetMovieActor(id: number): Observable<MovieActor> {
+    return this.http.get<MovieActor>(this.baseUrl + 'GetMovieActor/' + id, this.headers).pipe();
+  }
+
+  AddMovieActor(movieActor: MovieActor) {
+    return this.http.post(this.baseUrl + 'AddMovieActor', movieActor, this.headers).pipe();
+  }
+
+  EditMovieActor(movieActor: MovieActor) {
+    return this.http.put(this.baseUrl + 'EditMovieActor', movieActor, this.headers).pipe();
+  }
+
+  DeleteAllMovieActors(ids: string[]) {
+    return this.http.post(this.baseUrl + 'DeleteAllMovieActors', ids, this.headers).pipe();
   }
 }

@@ -1,1 +1,37 @@
-<p>edit-movie-actor works!</p>
+<div class="container mt-4 mb-4">
+    <button type="button" class="btn btn-primary mb-4" (click)="backToList()">العودة لقائمة ممثلين الافلام</button>
+    <div class="alert alert-success" role="alert" *ngIf="message">
+        <strong>{{message}}</strong>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">{{title}}</h4>
+            <form [formGroup]="maForm" (ngSubmit)="AddOrEditMovieActor()">
+                <div class="form-group">
+                    <label for="">الفيلم</label>
+                    <select id="movieId" class="custom-select" formControlName="movieId" required>
+                        <option selected value="0" disabled>اختر الفيلم</option>
+                        <option *ngFor="let mov of movies" [value]="mov.id">{{mov.movieName}}</option>
+                    </select>
+                    <div class="text-danger"
+                        *ngIf="this.maForm.get('movieId').value < 1 && this.maForm.get('movieId').touched">
+                        {{messageValidate.movieId.required}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="actorId">الممثل</label>
+                    <select id="actorId" class="custom-select" formControlName="actorId" required>
+                        <option selected value="0" disabled>اختر الممثل</option>
+                        <option *ngFor="let act of actors" [value]="act.id">{{act.actorName}}</option>
+                    </select>
+                    <div class="text-danger"
+                        *ngIf="this.maForm.get('actorId').value < 1 && this.maForm.get('actorId').touched">
+                        {{messageValidate.actorId.requierd}}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-25" [disabled]="maForm.invalid || this.maForm.get('actorId').value < 1 || this.maForm.get('movieId').value < 1">{{btnTitle}}</button>
+            </form>
+        </div>
+    </div>
+</div>
