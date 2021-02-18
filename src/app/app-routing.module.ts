@@ -19,6 +19,7 @@ import { AddMovieComponent } from './Admin/Movies/add-movie/add-movie.component'
 import { EditMovieComponent } from './Admin/Movies/edit-movie/edit-movie.component';
 import { EditMovieLinkComponent } from './Admin/MovieLinks/edit-movie-link/edit-movie-link.component';
 import { EditMovieActorComponent } from './Admin/MovieActors/edit-movie-actor/edit-movie-actor.component';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 
 const routes: Routes = [
@@ -46,6 +47,8 @@ const routes: Routes = [
   { path: 'addlink', component: EditMovieLinkComponent },
   { path: 'editmovieactor/:id', component: EditMovieActorComponent },
   { path: 'addmovieactor', component: EditMovieActorComponent },
+  { path: 'getmovie/:id', component: MovieDetailsComponent },
+
 
 ];
 

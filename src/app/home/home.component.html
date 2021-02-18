@@ -1,4 +1,50 @@
-<div class="container">
-    <h1>home works!</h1>
+<div class="img-container">
+  <img src="assets/images/Cinama.jpg" class="logo-img">
+</div>
+<div class="search-area">
+  <div class="card card-search">
+    <div class="text-center">
+      <form [formGroup]="formSearch" (ngSubmit)="onSearch()">
+        <input type="text" class="form-control input-search" formControlName="search"
+          placeholder="اكتب كلمات للبحث ...">
+        <button type="submit" class="btn btn-dark" [disabled]="formSearch.invalid">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+
+    </div>
+  </div>
+</div>
+<div class="page-content py-5 p-4">
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <div class="list-group" *ngFor="let sub of subCategories">
+        <button type="button" class="list-group-item list-group-item-action"
+          (click)="GetSubCategory(sub.subCategoryName)">{{sub.subCategoryName}}</button>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-3 mb-2" *ngFor="let movie of movies">
+          <div class="card-content" *ngIf="movies !== null && movies?.length > 0" (click)="navigateMovie(movie.id)">
+            <img class="card-img-top img-content" [src]="'assets/images/posts/'+ movie.moviePost" alt="">
+            <div class="title-content">{{movie.movieName}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="container text-center mt-5" *ngIf="movies === null || movies?.length < 1">
+        <div class="" *ngIf="message === null">
+          <div class="spinner-border text-primary content-spin" role="status">
+          </div>
+          <h5 class="mt-2">جاري التحميل ...</h5>
+        </div>
+
+        <div class="alert alert-danger mt-2" role="alert" *ngIf="message !== null">
+          <strong class="text-center">{{message}}</strong>
+          <button type="button" class="btn btn-danger ml-2 mr-2" (click)="GetMovies(null)">تحديث القائمة</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <app-footer-menu></app-footer-menu>
