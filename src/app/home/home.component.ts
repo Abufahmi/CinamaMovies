@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from '../models/Movie';
+import { MovieActor } from '../models/MovieActor';
 import { SubCategory } from '../models/SubCatgory';
 import { HomeService } from '../services/home.service';
 
@@ -15,19 +16,40 @@ export class HomeComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private activateRoute: ActivatedRoute
   ) { }
 
   subCategories: SubCategory[] = null;
   formSearch: FormGroup;
   movies: Movie[] = null;
+
   message: string = null;
 
   ngOnInit(): void {
     this.GetSubCategories();
-    this.GetMovies(null);
     this.formSearch = this.fb.group({
       search: ['', Validators.required]
+    })
+
+    this.activateRoute.paramMap.subscribe(param => {
+      var actorId = +param.get('id');
+      if (actorId) {
+        this.homeService.GetMovieByActor(actorId).subscribe(list => {
+          this.movies = this.movies || [];
+          for (let i = 0; i < list.length; i++) {
+            const movie = list[i].movie;
+            if (movie.id > 0) {
+              this.movies.push(movie);
+            }
+          }
+          console.log(this.movies);
+        }, ex => {
+          console.log(ex);
+        })
+      } else {
+        this.GetMovies(null);
+      }
     })
   }
 

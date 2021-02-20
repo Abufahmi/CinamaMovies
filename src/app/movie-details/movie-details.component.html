@@ -1,1 +1,78 @@
-<p>movie-details works!</p>
+<div class="container">
+  <div class="movie-header my-5">
+    <div class="row mr-0 ml-0">
+      <div class="col-md-4" *ngIf="model?.movie?.moviePost !== null">
+        <img [src]="'assets/images/posts/' + model.movie.moviePost" class="img-fluid rounded mb-3 img-details" alt="">
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">{{model?.movie.movieName}}</h4>
+          </div>
+          <div class="card-body">
+            <div class="row-details">
+              <h5 class="title d-inline-block text-secondary ml-2">التصنيف</h5>
+              <h5 class="details d-inline-block">{{model?.movie.subCategory.subCategoryName}}</h5>
+            </div>
+            <div class="row-details">
+              <h5 class="title d-inline-block text-secondary ml-2">القصة</h5>
+              <h5 class="details d-inline-block">{{model?.movie?.movieStory}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="movie-trailer">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title d-inline-block text-secondary ml-2">اعلان الفيلم</h5>
+      </div>
+      <div class="card-body" *ngIf="model?.movie?.movieTrailer !== null">
+        <iframe width="100%" height="600" [src]="getEmbedLink(model?.movie?.movieTrailer)" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="movie-actors mt-4 mb-4">
+    <div class="card" style>
+      <div class="card-header">
+        <h5 class="title d-inline-block text-secondary ml-2">طاقم التمثيل</h5>
+      </div>
+      <div class="card-body" *ngIf="model?.actors !== null">
+        <div class="row">
+          <div class="col-md-3" *ngFor="let actor of model.actors">
+            <div class="card bg-secondary text-center" (click)="GetMovieByActors(actor.actorId)">
+              <img class="card-img-top" style="width: 100%; height: 200px;"
+                [src]="'assets/images/actors/' + actor.actor.actorPicture" alt="">
+              <div class="card-body">
+                <h6 class="card-text text-light">{{actor.actor.actorName}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="movie-download mt-4 mb-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title d-inline-block text-secondary ml-2">مشاهدة او تحميل</h5>
+      </div>
+      <div class="card-body" *ngIf="model?.links !== null">
+        <div class="watch mb-3">
+          <video controls width="100%">
+            <source id="mov" src="" type="">
+          </video>
+          <div class="buttons d-inline-block m-2" *ngFor="let link of model.links">
+            <button type="button" class="btn btn-success" style="width: 150px;" (click)="DownloadVideo(link.movLink)">
+              <h5>{{link.quality}}</h5>
+              <h5> {{link.resolation}}</h5>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

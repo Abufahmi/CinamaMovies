@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from '../models/Movie';
+import { MovieActor } from '../models/MovieActor';
+import { MovieModel } from '../models/MovieModel';
 import { SubCategory } from '../models/SubCatgory';
 
 @Injectable({
@@ -27,6 +29,18 @@ export class HomeService {
 
   GetAllMovies(search: string): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.baseUrl + 'GetMovies/' + search, this.headers).pipe();
+  }
+
+  GetMovie(id: number): Observable<MovieModel> {
+    return this.http.get<MovieModel>(this.baseUrl + 'GetMovie/' + id, this.headers).pipe();
+  }
+
+  GetMovieByActor(id: number): Observable<MovieActor[]> {
+    return this.http.get<MovieActor[]>(this.baseUrl + 'GetMoviesByActor/' + id, this.headers).pipe();
+  }
+
+  DownloadVideo(id: number) {
+    return this.http.get<File>(this.baseUrl + 'GetVideoById/' + id, this.headers).pipe();
   }
 
 }

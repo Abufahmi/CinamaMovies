@@ -25,6 +25,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'home/:id', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registerconfirm', component: RegisterconfirmComponent },
